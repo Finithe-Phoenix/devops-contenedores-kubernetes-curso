@@ -22,6 +22,11 @@ Al terminar: **reinicia la PC**, abre **Docker Desktop** (espera la ballena 🐳
 `bash scripts/check-env.sh`. ¿Docker pide **WSL2**? El instalador ya lo activa; si lo haces a mano:
 `wsl --install` en PowerShell como Administrador + reiniciar.
 
+> 🪟 **Windows:** corre los scripts con **PowerShell** (`pwsh scripts/build-image.ps1`), **NO** con
+> `bash scripts/...sh`. En Windows `bash` apunta a WSL y falla con *"Subsistema de Windows para Linux
+> no tiene distribuciones instaladas"* si no hay distro. Más detalle: [`scripts/README.md`](../scripts/README.md).
+> O simplemente usa `docker` directo: desde `01-app/node`, `docker build -t academia-devops-app:1.0.0 .`
+>
 > 🍎🐧 **macOS / Linux:** usa `brew` / el gestor de tu distro (tablas abajo) + Docker Desktop o Docker Engine.
 
 ## Lo imprescindible (días 1 y 2)
