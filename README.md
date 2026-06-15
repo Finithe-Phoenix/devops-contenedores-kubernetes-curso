@@ -91,6 +91,7 @@ devops-contenedores-kubernetes-curso/
 ├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ✅
 ├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
+├── slides/              4 presentaciones (.pptx) generadas por código ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅
 └── scripts/             Utilidades del laboratorio                    ✅
 ```
@@ -122,8 +123,10 @@ Kubernetes (kind) · Helm · Trivy · Prometheus · Grafana.
 - [x] **M7** DevSecOps (Trivy, checklists)
 - [x] **M8** Observabilidad (Prometheus/Grafana, logs)
 - [x] **M9** Docs (manual participante, guía instructor, rúbrica, glosario)
-- [ ] **M10** Slides (4 decks)
+- [x] **M10** Slides (4 decks)
 - [x] **M11** Ensayo técnico end-to-end + Plan B
+
+> 🎉 **Curso completo: M0 → M11.**
 
 ---
 
