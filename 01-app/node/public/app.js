@@ -22,8 +22,8 @@ async function loadStatus() {
       bigCard("/courses", "amber", courses.length, "cursos registrados"),
     );
   } catch {
-    setHero(false, "");
-    cards.innerHTML = `<div class="card amber"><h3>sin conexión</h3><p>La app no responde. ¿Está corriendo el contenedor?</p></div>`;
+    markStatic();
+    cards.innerHTML = `<div class="card amber"><h3>versión web</h3><p>El estado en vivo aparece al correr la app localmente (<code style="font-family:var(--mono);color:var(--cyan)">make clase</code>).</p></div>`;
   }
 }
 function statusCard(title, color, rows) {
@@ -40,7 +40,16 @@ function bigCard(title, color, big, label) {
   return el;
 }
 function setHero(up, store) {
+  if (IS_STATIC) return;
   $("#hero-status").innerHTML = `<span class="dot ${up ? "up" : "down"}"></span> ${up ? "sistema arriba" : "sin conexión"}${store ? " · " + store : ""}`;
+}
+// Modo "versión web" (GitHub Pages, sin API en vivo) — degradación elegante
+let IS_STATIC = false;
+function markStatic() {
+  if (IS_STATIC) return;
+  IS_STATIC = true;
+  const b = $("#static-banner"); if (b) b.hidden = false;
+  const h = $("#hero-status"); if (h) h.innerHTML = '<span class="dot"></span> versión web';
 }
 
 // ====================== CURSOS (CRUD) ======================
@@ -57,7 +66,12 @@ async function loadCourses() {
     grid.innerHTML = "";
     if (!courses.length) { grid.innerHTML = `<p class="lead">Sin cursos. Agrega el primero arriba ☝️</p>`; return; }
     courses.forEach((c) => grid.append(courseCard(c)));
-  } catch { grid.innerHTML = `<p class="msg err">No se pudieron cargar los cursos.</p>`; logApi("GET", "/courses", "ERR", "sin conexión"); }
+  } catch {
+    markStatic();
+    grid.innerHTML = `<p class="lead">Los cursos se crean y borran con la app <strong>en vivo</strong>. En la versión web esto es solo demostrativo — corre la app localmente (<code style="font-family:var(--mono);color:var(--cyan)">make clase</code>) para gestionarlos y ver el API REST en acción.</p>`;
+    $("#courses-store").textContent = "demo";
+    logApi("GET", "/courses", "ERR", "version web (sin API)");
+  }
 }
 function setPersistHint(store) {
   const el = $("#persist-hint"); if (!el) return;
@@ -426,6 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#course-form").addEventListener("submit", addCourse);
   $("#btn-refresh").addEventListener("click", refresh);
   $("#btn-log-clear").addEventListener("click", () => { $("#api-log").innerHTML = ""; });
+  $("#static-x")?.addEventListener("click", () => { $("#static-banner").hidden = true; });
   // Tour guiado
   $("#btn-tour").addEventListener("click", startTour);
   $("#tour-next").addEventListener("click", nextTour);
