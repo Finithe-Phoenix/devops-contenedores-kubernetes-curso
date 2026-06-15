@@ -85,16 +85,33 @@
 
     <!-- CURSOS -->
     <section id="cursos" class="block">
-      <div class="block-head"><h2><span class="num">03</span> Cursos <span class="tag" id="courses-store">—</span></h2></div>
-      <p class="lead">Crea y elimina cursos con clics. Cada cambio viaja al API y (con Compose/K8s) se guarda en PostgreSQL.</p>
+      <div class="block-head"><h2><span class="num">03</span> La app del curso, en vivo <span class="tag" id="courses-store">—</span></h2></div>
+      <div class="teach-note">
+        <span class="teach-ico">🎓</span>
+        <div>
+          <strong>Esto no es una demo falsa.</strong> Es la API real del curso corriendo en un contenedor.
+          Cada tarjeta es una <strong>fila en una base de datos</strong>; cada botón dispara una
+          <strong>petición HTTP real</strong>. Crea o borra un curso y observa el
+          <strong>registro de peticiones</strong> de abajo: así es como un frontend conversa con un API REST.
+          <span id="persist-hint" class="persist-hint"></span>
+        </div>
+      </div>
       <form id="course-form" class="course-form">
         <input name="code" placeholder="Código (ej. WEB-101)" required maxlength="30" />
         <input name="name" placeholder="Nombre del curso" required maxlength="80" />
         <input name="professor" placeholder="Profesor (opcional)" maxlength="60" />
-        <button class="btn" type="submit">+ Agregar</button>
+        <button class="btn" type="submit">POST + Agregar</button>
       </form>
       <div id="course-msg" class="msg" hidden></div>
       <div class="course-grid" id="course-grid"></div>
+
+      <div class="api-console">
+        <div class="api-console-head">
+          <span class="dot up"></span><span>Registro de peticiones HTTP</span><span class="muted">· en vivo · same-origin</span>
+          <button class="btn ghost tiny" id="btn-log-clear" type="button">limpiar</button>
+        </div>
+        <div class="api-log" id="api-log"></div>
+      </div>
     </section>
 
     <!-- INFOGRAFÍAS -->

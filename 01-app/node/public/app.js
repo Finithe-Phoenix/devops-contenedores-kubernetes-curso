@@ -47,23 +47,37 @@ function setHero(up, store) {
 async function loadCourses() {
   const grid = $("#course-grid");
   try {
-    const courses = await fetch("/courses").then((r) => r.json());
+    const res = await fetch("/courses");
+    const courses = await res.json();
     const health = await fetch("/health").then((r) => r.json()).catch(() => ({}));
-    $("#courses-store").textContent = health.store === "postgres" ? "PostgreSQL" : "en memoria";
+    const store = health.store || "—";
+    $("#courses-store").textContent = store === "postgres" ? "PostgreSQL" : (store === "memory" ? "en memoria" : "—");
+    setPersistHint(store);
+    logApi("GET", "/courses", res.status, `${courses.length} curso${courses.length === 1 ? "" : "s"} en la base`);
     grid.innerHTML = "";
     if (!courses.length) { grid.innerHTML = `<p class="lead">Sin cursos. Agrega el primero arriba ☝️</p>`; return; }
     courses.forEach((c) => grid.append(courseCard(c)));
-  } catch { grid.innerHTML = `<p class="msg err">No se pudieron cargar los cursos.</p>`; }
+  } catch { grid.innerHTML = `<p class="msg err">No se pudieron cargar los cursos.</p>`; logApi("GET", "/courses", "ERR", "sin conexión"); }
+}
+function setPersistHint(store) {
+  const el = $("#persist-hint"); if (!el) return;
+  if (store === "postgres") { el.className = "persist-hint persist"; el.textContent = "▸ store: postgres → estos datos SOBREVIVEN a reinicios (viven en el volumen — eso es el Lab 2)."; }
+  else if (store === "memory") { el.className = "persist-hint ephemeral"; el.textContent = "▸ store: memory → se PIERDEN al reiniciar el contenedor (aún sin base de datos — levanta Compose para persistir)."; }
+  else { el.className = "persist-hint"; el.textContent = ""; }
 }
 function courseCard(c) {
   const el = document.createElement("div");
   el.className = "course";
-  const code = document.createElement("div"); code.className = "code"; code.textContent = c.code;
+  const head = document.createElement("div"); head.className = "c-head";
+  const code = document.createElement("span"); code.className = "code"; code.textContent = c.code;
+  const idb = document.createElement("span"); idb.className = "c-id"; idb.textContent = "#" + c.id;
+  head.append(code, idb);
   const name = document.createElement("div"); name.className = "cname"; name.textContent = c.name;
   const prof = document.createElement("div"); prof.className = "prof"; prof.textContent = c.professor ? "👤 " + c.professor : "—";
-  const del = document.createElement("button"); del.className = "del"; del.textContent = "✕"; del.title = "Eliminar";
+  const ep = document.createElement("div"); ep.className = "c-ep"; ep.textContent = "GET /courses/" + c.id;
+  const del = document.createElement("button"); del.className = "del"; del.textContent = "✕"; del.title = "DELETE /courses/" + c.id;
   del.onclick = () => deleteCourse(c.id);
-  el.append(code, name, prof, del);
+  el.append(head, name, prof, ep, del);
   return el;
 }
 async function addCourse(e) {
@@ -71,13 +85,38 @@ async function addCourse(e) {
   const f = e.target;
   const body = { code: f.code.value.trim(), name: f.name.value.trim(), professor: f.professor.value.trim() || null };
   const res = await fetch("/courses", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  if (res.ok) { showMsg("ok", `✓ Curso "${body.code}" agregado.`); f.reset(); refresh(); }
-  else { const err = await res.json().catch(() => ({})); showMsg("err", "✕ " + (err.error || "No se pudo agregar.")); }
+  if (res.ok) {
+    const created = await res.json().catch(() => ({}));
+    logApi("POST", "/courses", res.status, `→ creó id ${created.id} "${created.code}"`);
+    showMsg("ok", `✓ Curso "${body.code}" agregado (POST 201).`); f.reset(); refresh();
+  } else {
+    const err = await res.json().catch(() => ({}));
+    logApi("POST", "/courses", res.status, err.error || "rechazado");
+    showMsg("err", "✕ " + (err.error || "No se pudo agregar."));
+  }
 }
 async function deleteCourse(id) {
   const res = await fetch("/courses/" + id, { method: "DELETE" });
-  if (res.ok || res.status === 404) { showMsg("ok", "✓ Curso eliminado."); refresh(); }
+  logApi("DELETE", "/courses/" + id, res.status, res.status === 204 ? "eliminado" : "no encontrado");
+  if (res.ok || res.status === 404) { showMsg("ok", "✓ Curso eliminado (DELETE 204)."); refresh(); }
   else showMsg("err", "✕ No se pudo eliminar.");
+}
+// Registro de peticiones HTTP en vivo (panel didáctico)
+function logApi(method, path, status, note) {
+  const log = $("#api-log"); if (!log) return;
+  const m = ["GET", "POST", "DELETE"].includes(method) ? method : "OTHER";
+  const stClass = status === "ERR" ? "err" : (Number(status) >= 500 ? "err" : Number(status) >= 400 ? "warn" : "ok");
+  let t = ""; try { t = new Date().toLocaleTimeString("es-MX", { hour12: false }); } catch { t = ""; }
+  const line = document.createElement("div");
+  line.className = "logline";
+  const lt = document.createElement("span"); lt.className = "lt"; lt.textContent = t;
+  const lm = document.createElement("span"); lm.className = "lm " + m; lm.textContent = method;
+  const lp = document.createElement("span"); lp.className = "lp"; lp.textContent = path;
+  const ls = document.createElement("span"); ls.className = "ls " + stClass; ls.textContent = status;
+  line.append(lt, lm, lp, ls);
+  if (note) { const ln = document.createElement("span"); ln.className = "ln"; ln.textContent = "↳ " + note; line.append(ln); }
+  log.prepend(line);
+  while (log.children.length > 16) log.removeChild(log.lastChild);
 }
 function showMsg(kind, text) {
   const m = $("#course-msg");
@@ -247,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#btn-reset").addEventListener("click", resetProgress);
   $("#course-form").addEventListener("submit", addCourse);
   $("#btn-refresh").addEventListener("click", refresh);
+  $("#btn-log-clear").addEventListener("click", () => { $("#api-log").innerHTML = ""; });
   $$(".seg-btn").forEach((b) => b.addEventListener("click", () => {
     $(".seg-btn.active").classList.remove("active"); b.classList.add("active"); lang = b.dataset.lang; renderGallery();
   }));
