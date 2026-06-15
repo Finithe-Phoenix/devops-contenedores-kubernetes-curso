@@ -1,0 +1,30 @@
+# Reto 2 — este Compose tiene UN bug. Levántalo, revisa /health y arréglalo.
+services:
+  app:
+    build: ../../01-app/node
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: database        # 🐞 algo aquí no cuadra...
+      DB_NAME: academia
+      DB_USER: academia
+      DB_PASSWORD: academia
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: academia
+      POSTGRES_USER: academia
+      POSTGRES_PASSWORD: academia
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U academia -d academia"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

@@ -58,6 +58,10 @@ para chat o imprimir) que viven en [`slides/`](slides/README.md):
 (comandos exactos, *"lo que verás"*, troubleshooting y cómo enseñarlo). Y con `make` tienes atajos
 de un comando: `make check`, `make compose`, `make deploy`, `make help` (ver `Makefile`).
 
+**Practica depurando:** los retos *rómpelo y arréglalo* en [`retos/`](retos/README.md) traen archivos
+con **bugs reales** (Docker, Compose, Kubernetes) para diagnosticar y reparar. Versión rápida
+*spot-the-bug* en el Centro de Mando (la app web) → sección **🕵️ Detective de bugs**.
+
 ---
 
 ## 🗺️ Mapa del curso
@@ -109,6 +113,7 @@ devops-contenedores-kubernetes-curso/
 ├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ✅
 ├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
 ├── guias/               Guías paso a paso por laboratorio (ES/EN)     ✅
+├── retos/               Retos "rómpelo y arréglalo" (bugs reales)     ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
 ├── slides/              Decks instructor (ES/EN) + infografías alumnos ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅

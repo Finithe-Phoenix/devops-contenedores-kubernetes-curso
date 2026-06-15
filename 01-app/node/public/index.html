@@ -22,9 +22,9 @@
       <a href="#estado">Estado</a>
       <a href="#progreso">Progreso</a>
       <a href="#cursos">Cursos</a>
+      <a href="#detective">Detective</a>
       <a href="#infografias">Infografías</a>
       <a href="#comandos">Comandos</a>
-      <a href="#recursos">Recursos</a>
     </nav>
     <a class="gh" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso" target="_blank" rel="noopener">GitHub ↗</a>
   </header>
@@ -39,8 +39,8 @@
       Aquí la ves correr de verdad, sigues tu progreso con XP y descargas todo el material.</p>
     <div class="hero-pills">
       <span class="pill" id="hero-status"><span class="dot"></span> conectando…</span>
-      <a class="pill pill-link" href="#progreso">Tu progreso →</a>
-      <a class="pill pill-link" href="#infografias">14 infografías ↓</a>
+      <button class="pill pill-tour" id="btn-tour" type="button">▶ Tour guiado</button>
+      <a class="pill pill-link" href="#detective">🕵️ Detective de bugs</a>
     </div>
   </section>
 
@@ -114,10 +114,19 @@
       </div>
     </section>
 
+    <!-- DETECTIVE DE BUGS -->
+    <section id="detective" class="block">
+      <div class="block-head"><h2><span class="num">04</span> Detective de bugs <span class="tag" id="bug-score">0/3</span></h2></div>
+      <p class="lead">Tres errores <strong>reales</strong> que aparecen en clase. Encuentra el bug y recibe la
+        explicación al instante… luego <strong>arréglalo de verdad</strong> en los
+        <a href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/tree/main/retos" target="_blank" rel="noopener">retos del repo</a> (rómpelo y arréglalo).</p>
+      <div class="bugs" id="bugs"></div>
+    </section>
+
     <!-- INFOGRAFÍAS -->
     <section id="infografias" class="block">
       <div class="block-head">
-        <h2><span class="num">04</span> Infografías</h2>
+        <h2><span class="num">05</span> Infografías</h2>
         <div class="seg" role="tablist">
           <button class="seg-btn active" data-lang="es">Español</button>
           <button class="seg-btn" data-lang="en">English</button>
@@ -133,7 +142,7 @@
 
     <!-- COMANDOS -->
     <section id="comandos" class="block">
-      <div class="block-head"><h2><span class="num">05</span> Comandos rápidos</h2></div>
+      <div class="block-head"><h2><span class="num">06</span> Comandos rápidos</h2></div>
       <p class="lead">Los esenciales para arrancar. Toca el comando para copiarlo.</p>
       <div class="cmd-list" id="cmd-list">
         <div class="cmd" data-cmd="git clone https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso"><code>git clone …/devops-contenedores-kubernetes-curso</code><span class="copy">copiar</span></div>
@@ -147,7 +156,7 @@
 
     <!-- RECURSOS -->
     <section id="recursos" class="block">
-      <div class="block-head"><h2><span class="num">06</span> Recursos del curso</h2></div>
+      <div class="block-head"><h2><span class="num">07</span> Recursos del curso</h2></div>
       <div class="links">
         <a class="link-card" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/tree/main/guias" target="_blank" rel="noopener">
           <h3>👣 Guías paso a paso</h3><p>Una guía detallada por laboratorio (ES/EN).</p></a>
@@ -177,6 +186,20 @@
 
   <div class="confetti" id="confetti" aria-hidden="true"></div>
   <div class="toast" id="toast" hidden></div>
+
+  <!-- TOUR GUIADO -->
+  <div class="tour-spot" id="tour-spot" hidden></div>
+  <div class="tour-tip" id="tour-tip" hidden>
+    <div class="tour-step" id="tour-step"></div>
+    <h4 id="tour-title"></h4>
+    <p id="tour-body"></p>
+    <div class="tour-actions">
+      <button class="btn ghost tiny" id="tour-skip" type="button">Salir</button>
+      <span class="tour-spacer"></span>
+      <button class="btn ghost tiny" id="tour-prev" type="button">‹ Atrás</button>
+      <button class="btn tiny" id="tour-next" type="button">Siguiente ›</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

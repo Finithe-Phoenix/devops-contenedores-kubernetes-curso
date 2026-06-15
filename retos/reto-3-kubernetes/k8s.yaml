@@ -1,0 +1,35 @@
+# Reto 3 — estos manifiestos tienen UN bug. Despliega, prueba el Service y arréglalo.
+# (Requiere el namespace 'academia' y la imagen academia-devops-app:1.0.0 cargada en el clúster.)
+apiVersion: v1
+kind: Service
+metadata:
+  name: academia-app-service
+  namespace: academia
+spec:
+  selector:
+    app: academia            # 🐞 ¿enruta esto a algún Pod?
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: academia-app
+  namespace: academia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: academia-app
+  template:
+    metadata:
+      labels:
+        app: academia-app
+    spec:
+      containers:
+        - name: academia-app
+          image: academia-devops-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080

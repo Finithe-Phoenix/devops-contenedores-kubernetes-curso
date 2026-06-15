@@ -58,6 +58,10 @@ or printing) that live in [`slides/`](slides/README.en.md):
 (exact commands, *"what you'll see"*, troubleshooting and how to teach it). And with `make` you get
 one-command shortcuts: `make check`, `make compose`, `make deploy`, `make help` (see `Makefile`).
 
+**Practice debugging:** the *break-it-and-fix-it* challenges in [`retos/`](retos/README.en.md) ship files
+with **real bugs** (Docker, Compose, Kubernetes) to diagnose and repair. Quick *spot-the-bug* version in
+the Command Center (the web app) → **🕵️ Bug Detective** section.
+
 ---
 
 ## 🗺️ Course map
@@ -109,6 +113,7 @@ devops-contenedores-kubernetes-curso/
 ├── 08-devsecops/        Trivy, checklists, secure/insecure examples    ✅
 ├── 09-proyecto-final/   Integrative challenge + rubric                 ✅
 ├── guias/               Step-by-step guide per lab (ES/EN)             ✅
+├── retos/               "Break it & fix it" challenges (real bugs)     ✅
 ├── docs/                Manual, instructor guide, glossary, essay      ✅
 ├── slides/              Instructor decks (ES/EN) + student infographics ✅
 ├── gamificacion/        XP, missions and badges system                ✅
