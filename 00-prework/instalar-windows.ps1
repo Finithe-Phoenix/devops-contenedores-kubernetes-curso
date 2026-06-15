@@ -3,6 +3,9 @@
 #  Instala y configura TODO: WSL2 + Docker + Git + Node + kubectl + kind +
 #  Helm + Trivy + VS Code, clona el repo del curso y verifica.
 #
+#  Compatibilidad: 100% ASCII (funciona en Windows PowerShell 5.1 y PowerShell 7+
+#  sin problemas de codificacion).
+#
 #  COMO USARLO (el alumno):
 #    Clic derecho sobre el archivo  ->  "Ejecutar con PowerShell"
 #    (o:  powershell -ExecutionPolicy Bypass -File instalar-windows.ps1 )
@@ -18,29 +21,28 @@ if (-not $esAdmin) {
 }
 
 $ErrorActionPreference = "Continue"
-try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 $TOTAL = 5
 
-# --- Helpers visuales -------------------------------------------------------
-function Linea { Write-Host ("─" * 62) -ForegroundColor DarkCyan }
+# --- Helpers visuales (solo ASCII + color) ----------------------------------
+function Linea { Write-Host ("=" * 62) -ForegroundColor DarkCyan }
 function Banner {
   Write-Host ""
   Linea
-  Write-Host "   🚀  ACADEMIA DEVOPS  ·  Instalador de Clase (Windows)" -ForegroundColor Cyan
-  Write-Host "       Docker · Kubernetes · CI/CD · DevSecOps · gamificado" -ForegroundColor DarkGray
+  Write-Host "   ACADEMIA DEVOPS  -  Instalador de Clase (Windows)" -ForegroundColor Cyan
+  Write-Host "   Docker - Kubernetes - CI/CD - DevSecOps - gamificado" -ForegroundColor DarkGray
   Linea
 }
 function Paso($n, $titulo) {
   Write-Host ""
-  Write-Host ("▸ Paso {0}/{1} · {2}" -f $n, $TOTAL, $titulo) -ForegroundColor Cyan
+  Write-Host (">> Paso {0}/{1} - {2}" -f $n, $TOTAL, $titulo) -ForegroundColor Cyan
   $w = 34; $fill = [int]($w * $n / $TOTAL)
-  $bar = ("█" * $fill) + ("░" * ($w - $fill))
-  Write-Host ("  [{0}] {1}%" -f $bar, [int](100 * $n / $TOTAL)) -ForegroundColor DarkCyan
+  $bar = ("#" * $fill) + ("-" * ($w - $fill))
+  Write-Host ("   [{0}] {1}%" -f $bar, [int](100 * $n / $TOTAL)) -ForegroundColor DarkCyan
 }
-function Ok($m)   { Write-Host ("    ✔ " + $m) -ForegroundColor Green }
-function Info($m) { Write-Host ("    · " + $m) -ForegroundColor Gray }
-function Warn($m) { Write-Host ("    ! " + $m) -ForegroundColor Yellow }
-function Err($m)  { Write-Host ("    ✗ " + $m) -ForegroundColor Red }
+function Ok($m)   { Write-Host ("   [OK] " + $m) -ForegroundColor Green }
+function Info($m) { Write-Host ("   [..] " + $m) -ForegroundColor Gray }
+function Warn($m) { Write-Host ("   [!!] " + $m) -ForegroundColor Yellow }
+function Err($m)  { Write-Host ("   [XX] " + $m) -ForegroundColor Red }
 
 Banner
 
@@ -50,7 +52,7 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
   Err "winget no esta disponible en este Windows."
   Info "Instala 'App Installer' desde Microsoft Store y vuelve a correr el script:"
   Info "https://apps.microsoft.com/detail/9NBLGGH4NNS1"
-  Read-Host "`n  Presiona Enter para salir"; exit 1
+  Read-Host "`n   Presiona Enter para salir"; exit 1
 }
 Ok "winget disponible"
 
@@ -81,9 +83,9 @@ $tools = @(
   @{ id = "AquaSecurity.Trivy";         name = "Trivy" }
 )
 foreach ($t in $tools) {
-  Write-Host ("    ⏳ {0,-16} instalando..." -f $t.name) -ForegroundColor DarkGray -NoNewline
+  Write-Host ("   [..] {0,-16} instalando..." -f $t.name) -ForegroundColor DarkGray
   winget install --id $t.id -e --source winget --accept-source-agreements --accept-package-agreements --silent 2>$null | Out-Null
-  Write-Host ("`r    ✔ {0,-16} listo            " -f $t.name) -ForegroundColor Green
+  Ok ("{0,-16} listo" -f $t.name)
 }
 
 # --- 4) Configurar + clonar el repo ----------------------------------------
@@ -109,18 +111,18 @@ Paso 5 "Verificacion"
 $env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")
 foreach ($c in @("git","node","npm","docker","kubectl","kind","helm","trivy","code")) {
   if (Get-Command $c -ErrorAction SilentlyContinue) { Ok $c }
-  else { Info ("{0}  (estara disponible tras reiniciar)" -f $c) }
+  else { Info ("{0,-8} (estara disponible tras reiniciar)" -f $c) }
 }
 
 # --- Cierre -----------------------------------------------------------------
 Write-Host ""
 Linea
-Write-Host "   ✅  INSTALACION TERMINADA — siguientes pasos:" -ForegroundColor Green
+Write-Host "   INSTALACION TERMINADA - siguientes pasos:" -ForegroundColor Green
 Write-Host ""
 Write-Host "   1) " -NoNewline; Write-Host "REINICIA la computadora." -ForegroundColor Yellow
-Write-Host "   2) Abre 'Docker Desktop' y espera la ballena 🐳."
+Write-Host "   2) Abre 'Docker Desktop' y espera a que arranque (la ballena)."
 Write-Host "   3) Material del curso:  $destino"
 Write-Host "   4) Valida todo:  " -NoNewline; Write-Host "cd `"$destino`"  ;  bash scripts/check-env.sh" -ForegroundColor Cyan
 Linea
 Write-Host ""
-Read-Host "  Presiona Enter para cerrar"
+Read-Host "   Presiona Enter para cerrar"
