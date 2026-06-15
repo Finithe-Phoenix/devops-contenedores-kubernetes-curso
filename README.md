@@ -1,0 +1,137 @@
+# 🚀 Curso-Taller: DevOps y Contenedores con Docker & Kubernetes
+
+### Fundamentos · CI/CD · Orquestación · Monitoreo · DevSecOps
+
+![Node](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-✓-2496ED?logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-kind-326CE5?logo=kubernetes&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-3-0F1689?logo=helm&logoColor=white)
+![Licencia](https://img.shields.io/badge/Licencia-MIT-yellow)
+![Tests](https://img.shields.io/badge/tests-8%2F8-brightgreen)
+
+> **Capacitación docente — Tecnológico de Toluca**
+> Instructor: **Daniel Eduardo González Ramírez** · 4 días · 24 horas · presencial e intensivo
+
+---
+
+## 🎯 La idea en una frase
+
+> Tomamos **una sola aplicación** y la acompañamos por todo su ciclo de vida moderno:
+> la versionamos, la **contenerizamos** con Docker, la **automatizamos** con CI/CD, la
+> **desplegamos** en Kubernetes, la **escalamos**, la **monitoreamos** y la **aseguramos**
+> con DevSecOps — y al final aprendemos a convertir todo esto en **práctica para nuestros alumnos**.
+
+No es una lista de herramientas sueltas. Es **una historia técnica completa**.
+
+---
+
+## 🎮 Esto es un juego (con XP y medallas)
+
+El curso está montado como una serie de **misiones**. Cada laboratorio completado da
+**XP** y desbloquea una **medalla**. Acumulas rango hasta convertirte en **Arquitecto/a DevOps**.
+
+| Rango | XP | Significado |
+| ----- | -- | ----------- |
+| 🥚 Aprendiz | 0 | Acabas de entrar al dojo |
+| 🐳 Operador de Contenedores | 150 | Dominas Docker y Compose |
+| ⚙️ Ingeniero de Entrega | 350 | Automatizas con CI/CD |
+| ☸️ Pilot@ de Kubernetes | 600 | Despliegas, escalas y haces rollback |
+| 🏛️ Arquitect@ DevOps | 900 | Cierras el ciclo completo |
+
+👉 Detalle del sistema, misiones y **tarjeta de logros imprimible** en [`gamificacion/`](gamificacion/README.md).
+
+---
+
+## 🗺️ Mapa del curso
+
+| Día | Tema | Misiones (laboratorios) |
+| --- | ---- | ----------------------- |
+| **1** | Fundamentos, Git, Docker y Dockerfile | Lab 0 · Lab 1 |
+| **2** | Docker Compose, CI/CD y escaneo básico | Lab 2 · Lab 3 · Lab 4 |
+| **3** | Kubernetes, manifiestos, Helm | Lab 5 · Lab 6 · Lab 7 · Lab 8 |
+| **4** | Observabilidad, DevSecOps y proyecto final | Lab 9 · Lab 10 |
+
+---
+
+## ⚡ Inicio rápido (5 minutos)
+
+```bash
+# 1) Clona el repo
+git clone <url-de-este-repo>
+cd devops-contenedores-kubernetes-curso
+
+# 2) Valida tu ambiente (Lab 0)
+bash scripts/check-env.sh
+
+# 3) Corre la app demo en local
+cd 01-app/node
+npm install
+npm start            # -> http://localhost:8080/health
+
+# 4) Conténtenla con Docker (Lab 1)
+docker build -t academia-devops-app:1.0.0 .
+docker run -d -p 8080:8080 --name academia academia-devops-app:1.0.0
+curl http://localhost:8080/health
+```
+
+---
+
+## 📁 Estructura del repositorio
+
+```text
+devops-contenedores-kubernetes-curso/
+├── 00-prework/          Instalación, checklist y troubleshooting
+├── 01-app/node/         La app demo "Academia DevOps App" (Node.js)   ✅
+├── 02-docker/           Dockerfiles didácticos (inseguro vs seguro)   ✅
+├── 03-compose/          App + PostgreSQL con Docker Compose           ✅
+├── 04-cicd/             Pipelines GitHub Actions / Jenkins            ⏳
+├── 05-kubernetes/       Manifiestos: deployment, service, config...   ⏳
+├── 06-helm/             Chart de Helm                                 ⏳
+├── 07-observability/    Prometheus, Grafana, logs                     ⏳
+├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ⏳
+├── 09-proyecto-final/   Reto integrador + rúbrica                     ⏳
+├── gamificacion/        Sistema de XP, misiones y medallas            ✅
+└── scripts/             Utilidades del laboratorio                    ✅
+```
+
+> **Estado de construcción:** ✅ listo · ⏳ en construcción. Este README se actualiza
+> conforme avanzamos. (Ver [roadmap](#-roadmap-de-construcción).)
+
+---
+
+## 🧰 Stack del curso
+
+**Ruta principal (ligera, para arrancar rápido):** Node.js 22 + Express + PostgreSQL.
+**Ruta seria / empresarial (respaldo):** Java 17 + Spring Boot (misma API).
+
+Herramientas: Git · Docker · Docker Compose · GitHub Actions / Jenkins ·
+Kubernetes (kind) · Helm · Trivy · Prometheus · Grafana.
+
+---
+
+## 🛠️ Roadmap de construcción
+
+- [x] **M0** Esqueleto del repo + gamificación
+- [x] **M1** App demo (`/health`, `/version`, `/courses`) + pruebas
+- [x] **M2** Docker (Dockerfile multi-stage + variantes didácticas)
+- [x] **M3** Docker Compose (app + PostgreSQL)
+- [ ] **M4** CI/CD (GitHub Actions + Jenkinsfile)
+- [ ] **M5** Kubernetes (namespace, deployment, service, configmap, secret)
+- [ ] **M6** Helm chart
+- [ ] **M7** DevSecOps (Trivy, checklists)
+- [ ] **M8** Observabilidad (Prometheus/Grafana, logs)
+- [ ] **M9** Docs (manual participante, guía instructor, rúbrica, glosario)
+- [ ] **M10** Slides (4 decks)
+- [ ] **M11** Ensayo técnico end-to-end + Plan B
+
+---
+
+## 📜 Mensaje del curso
+
+> *"DevOps no es solo usar herramientas; es enseñar a pensar en el ciclo completo de vida
+> del software. Un programa no termina cuando compila: debe poder probarse, empaquetarse,
+> desplegarse, monitorearse y protegerse."*
+
+## Licencia
+
+[MIT](LICENSE) — material educativo libre de usar y adaptar para tus clases.

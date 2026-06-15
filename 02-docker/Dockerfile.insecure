@@ -1,0 +1,27 @@
+# ============================================================
+#  EJEMPLO DIDÁCTICO — Dockerfile con MALAS prácticas ❌
+#  Úsalo SOLO para compararlo contra Dockerfile.secure.
+#  NUNCA lo lleves a producción.
+# ============================================================
+
+# ❌ MAL: imagen "fat" de ~1 GB en vez de una -alpine / -slim
+FROM node:22
+
+WORKDIR /app
+
+# ❌ MAL: copia TODO el contexto (node_modules, .git, .env, secretos...)
+COPY . .
+
+# ❌ MAL: instala devDependencies y no fija versiones (debería ser `npm ci --omit=dev`)
+RUN npm install
+
+# ❌ MAL: secreto "quemado" dentro de la imagen — queda visible en el historial de capas
+ENV DB_PASSWORD=supersecreta123
+
+EXPOSE 8080
+
+# ❌ MAL: el contenedor corre como root (no hay instrucción USER)
+# ❌ MAL: sin HEALTHCHECK, Docker no sabe si la app está sana
+CMD ["npm", "start"]
+
+# ¿Cuántos problemas le encuentras? -> Compáralo con Dockerfile.secure

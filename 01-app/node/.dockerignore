@@ -1,0 +1,11 @@
+# Mantiene el build context (y la imagen) pequeño y sin secretos.
+node_modules
+npm-debug.log*
+coverage
+test
+.env
+.env.*
+.git
+.gitignore
+*.md
+Dockerfile*

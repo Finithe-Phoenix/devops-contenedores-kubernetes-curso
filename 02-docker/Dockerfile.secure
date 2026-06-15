@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1
+# ============================================================
+#  EJEMPLO DIDÁCTICO — Dockerfile con BUENAS prácticas ✅
+#  Es el mismo que usa la app en 01-app/node/Dockerfile.
+# ============================================================
+
+# ✅ Imagen base ligera y con versión fija (no usar :latest)
+FROM node:22-alpine AS deps
+WORKDIR /app
+# ✅ Copia primero package*.json para aprovechar la caché de capas
+COPY package*.json ./
+# ✅ Build reproducible y solo dependencias de producción
+RUN npm ci --omit=dev
+
+# ✅ Multi-stage: la imagen final no carga herramientas de build
+FROM node:22-alpine AS runtime
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY package*.json ./
+COPY src ./src
+
+EXPOSE 8080
+
+# ✅ Corre como usuario sin privilegios (no root)
+USER node
+
+# ✅ Healthcheck nativo: Docker sabe si la app está sana
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "fetch('http://localhost:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+
+# ✅ Los secretos llegan por variables de entorno / Secrets, NUNCA en el Dockerfile
+CMD ["node", "src/server.js"]

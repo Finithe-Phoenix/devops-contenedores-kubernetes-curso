@@ -1,0 +1,25 @@
+# Node
+node_modules/
+npm-debug.log*
+coverage/
+
+# Entornos y secretos
+.env
+.env.*
+*.local
+
+# Editores / SO
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Build / artefactos
+dist/
+build/
+build-output/
+*.log
+
+# Kubernetes / Helm
+kubeconfig
+*.tgz

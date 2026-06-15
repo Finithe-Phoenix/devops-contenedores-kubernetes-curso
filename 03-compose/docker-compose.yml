@@ -1,0 +1,49 @@
+# Docker Compose — Academia DevOps App + PostgreSQL
+#
+# Lab 2: aplicación multicontenedor. Usamos la MISMA imagen del Lab 1,
+# pero ahora le damos una base de datos a través de variables de entorno.
+#
+# Levantar:   docker compose up -d --build
+# Ver:        docker compose ps  |  docker compose logs -f app
+# Apagar:     docker compose down            (conserva datos)
+#             docker compose down -v         (borra el volumen)
+
+name: academia-devops
+
+services:
+  app:
+    build:
+      context: ../01-app/node      # construye la imagen desde el código de la app
+    image: academia-devops-app:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      APP_VERSION: "1.0.0"
+      DB_HOST: db                  # 👈 'db' es el nombre del servicio = hostname interno
+      DB_PORT: "5432"
+      DB_NAME: academia
+      DB_USER: academia
+      DB_PASSWORD: academia
+    depends_on:
+      db:
+        condition: service_healthy # espera a que Postgres esté SANO, no solo arrancado
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: academia
+      POSTGRES_USER: academia
+      POSTGRES_PASSWORD: academia
+    ports:
+      - "5432:5432"                # expuesto solo para inspeccionar desde el host
+    volumes:
+      - db_data:/var/lib/postgresql/data   # 👈 datos persistentes entre reinicios
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U academia -d academia"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db_data:

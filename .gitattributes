@@ -1,0 +1,16 @@
+# Normaliza finales de línea para evitar el clásico bug de CRLF en Windows/OneDrive
+# (scripts .sh con CRLF rompen los contenedores Linux con "Syntax error: end of file unexpected").
+* text=auto eol=lf
+
+# Estos SIEMPRE en LF (se ejecutan dentro de contenedores Linux)
+*.sh   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+Dockerfile* text eol=lf
+
+# Binarios: que git no los toque
+*.png binary
+*.jpg binary
+*.pdf binary
+*.pptx binary
+*.tgz binary
