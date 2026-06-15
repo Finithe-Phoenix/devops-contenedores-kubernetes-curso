@@ -1,3 +1,5 @@
+> 🌐 [English](incident-simulation.en.md) · **Español**
+
 # 🚨 Simulación de incidentes (dinámica de clase)
 
 Cuatro escenarios para que los profesores **diagnostiquen** como si fuera real.

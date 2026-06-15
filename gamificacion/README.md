@@ -1,3 +1,5 @@
+> 🌐 [English](README.en.md) · **Español**
+
 # 🎮 Sistema de juego del curso
 
 Porque un curso de DevOps para profes debe ser **la clase más divertida del año**.

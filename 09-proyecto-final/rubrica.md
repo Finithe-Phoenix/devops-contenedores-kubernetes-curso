@@ -1,3 +1,5 @@
+> 🌐 [English](rubrica.en.md) · **Español**
+
 # 📊 Rúbrica de evaluación
 
 Úsala para el proyecto final y como modelo para evaluar a tus propios alumnos.

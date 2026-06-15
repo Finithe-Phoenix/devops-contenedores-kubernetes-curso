@@ -1,3 +1,5 @@
+> 🌐 [English](logs.en.md) · **Español**
+
 # 📋 Logging básico en Kubernetes
 
 > Parte de la misión 🔭 *Observador*. Los logs son tu primera herramienta de diagnóstico.

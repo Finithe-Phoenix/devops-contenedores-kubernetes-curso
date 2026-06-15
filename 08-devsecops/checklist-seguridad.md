@@ -1,3 +1,5 @@
+> 🌐 [English](checklist-seguridad.en.md) · **Español**
+
 # ✅ Checklist DevSecOps (para ti y para tus alumnos)
 
 Controles mínimos organizados por capa. Útil como rúbrica de seguridad en clase.

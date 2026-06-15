@@ -1,3 +1,5 @@
+> 🌐 [English](README.en.md) · **Español**
+
 # 🚀 Curso-Taller: DevOps y Contenedores con Docker & Kubernetes
 
 ### Fundamentos · CI/CD · Orquestación · Monitoreo · DevSecOps
@@ -40,6 +42,17 @@ El curso está montado como una serie de **misiones**. Cada laboratorio completa
 | 🏛️ Arquitect@ DevOps | 900 | Cierras el ciclo completo |
 
 👉 Detalle del sistema, misiones y **tarjeta de logros imprimible** en [`gamificacion/`](gamificacion/README.md).
+
+---
+
+## 🌐 Bilingüe · 🎓 Para alumnos
+
+Todo el material está en **español e inglés** — usa el selector `🌐 English · Español` que aparece
+arriba de cada documento.
+
+**Para tus alumnos:** comparte las **infografías de una página** (14 láminas de referencia, listas
+para chat o imprimir) que viven en [`slides/`](slides/README.md):
+`Infografias_Alumnos_ES.pptx` y `Student_Infographics_EN.pptx`.
 
 ---
 
@@ -92,7 +105,7 @@ devops-contenedores-kubernetes-curso/
 ├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ✅
 ├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
-├── slides/              4 presentaciones (.pptx) generadas por código ✅
+├── slides/              Decks instructor (ES/EN) + infografías alumnos ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅
 └── scripts/             Utilidades del laboratorio                    ✅
 ```
@@ -124,7 +137,7 @@ Kubernetes (kind) · Helm · Trivy · Prometheus · Grafana.
 - [x] **M7** DevSecOps (Trivy, checklists)
 - [x] **M8** Observabilidad (Prometheus/Grafana, logs)
 - [x] **M9** Docs (manual participante, guía instructor, rúbrica, glosario)
-- [x] **M10** Slides (4 decks)
+- [x] **M10** Slides (8 decks bilingües + infografías para alumnos)
 - [x] **M11** Ensayo técnico end-to-end + Plan B
 
 > 🎉 **Curso completo: M0 → M11.**

@@ -1,3 +1,5 @@
+> 🌐 [English](ensayo-tecnico.en.md) · **Español**
+
 # 🧪 Ensayo técnico de punta a punta (M11)
 
 > Corre TODO el curso desde cero, una vez, antes de pararte frente al grupo.

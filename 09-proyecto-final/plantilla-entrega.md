@@ -1,3 +1,5 @@
+> 🌐 [English](plantilla-entrega.en.md) · **Español**
+
 # 📝 Plantilla de entrega — Proyecto final
 
 > Copia este archivo, llénalo y entrégalo junto con tus capturas.

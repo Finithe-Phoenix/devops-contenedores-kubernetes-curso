@@ -1,3 +1,5 @@
+> 🌐 [English](comandos-kubectl.en.md) · **Español**
+
 # ☸️ Lab 5-7 — Kubernetes: comandos esenciales
 
 > **Misiones:** desplegar (Lab 5 ☸️), configurar (Lab 6 🔐), escalar y hacer rollback (Lab 7 📈).

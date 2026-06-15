@@ -1,3 +1,5 @@
+> 🌐 [English](trivy.en.md) · **Español**
+
 # 🛡️ Lab 4 — DevSecOps con Trivy
 
 > **Misión:** escanear la imagen e interpretar los hallazgos. **Recompensa:** +90 XP y la medalla 🛡️ *Guardián Shift-Left*.

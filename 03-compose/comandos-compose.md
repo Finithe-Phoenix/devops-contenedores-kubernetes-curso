@@ -1,3 +1,5 @@
+> 🌐 [English](comandos-compose.en.md) · **Español**
+
 # 🧩 Lab 2 — Docker Compose: app + base de datos
 
 > **Misión:** levantar la app CON su base de datos en un solo comando.

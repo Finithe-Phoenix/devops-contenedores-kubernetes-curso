@@ -1,3 +1,5 @@
+> 🌐 [English](troubleshooting.en.md) · **Español**
+
 # 🛟 Troubleshooting del ambiente
 
 Los problemas más comunes y su solución rápida. (El curso completo trae un

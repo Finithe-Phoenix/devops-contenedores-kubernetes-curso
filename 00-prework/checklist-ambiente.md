@@ -1,3 +1,5 @@
+> 🌐 [English](checklist-ambiente.en.md) · **Español**
+
 # ✅ Checklist de ambiente (Lab 0)
 
 Marca cada punto. Cuando todos estén ✅, desbloqueas la medalla 🧰 *Kit Listo* (+30 XP).

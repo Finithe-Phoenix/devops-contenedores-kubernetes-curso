@@ -1,3 +1,5 @@
+> 🌐 [English](misiones.en.md) · **Español**
+
 # 🗺️ Misiones detalladas
 
 Cada misión sigue el mismo formato: **Objetivo → Evidencia → XP → Reto extra → Pregunta docente**.

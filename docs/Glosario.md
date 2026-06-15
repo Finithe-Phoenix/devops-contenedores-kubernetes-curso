@@ -1,3 +1,5 @@
+> 🌐 [English](Glosario.en.md) · **Español**
+
 # 📖 Glosario del curso
 
 Definiciones cortas, en lenguaje de clase.

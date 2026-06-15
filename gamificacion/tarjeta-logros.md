@@ -1,3 +1,5 @@
+> 🌐 [English](tarjeta-logros.en.md) · **Español**
+
 # 🏆 Tarjeta de logros — Curso DevOps y Contenedores
 
 > Imprime esta hoja. Marca cada medalla al completar su misión. Suma tu XP.

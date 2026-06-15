@@ -1,3 +1,5 @@
+> 🌐 [English](prometheus-grafana.en.md) · **Español**
+
 # 🔭 Lab 9 — Observabilidad con Prometheus y Grafana
 
 > **Misión:** observar la app y el clúster. **Recompensa:** +90 XP y la medalla 🔭 *Observador*.

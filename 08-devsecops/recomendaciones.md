@@ -1,3 +1,5 @@
+> 🌐 [English](recomendaciones.en.md) · **Español**
+
 # 🧭 DevSecOps — inseguro vs mejorado (lado a lado)
 
 Material para la dinámica "encuentra los problemas" del día 4.

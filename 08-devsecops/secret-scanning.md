@@ -1,3 +1,5 @@
+> 🌐 [English](secret-scanning.en.md) · **Español**
+
 # 🔎 Secret scanning — no dejes llaves en el código
 
 El error más común y más caro: subir una contraseña o token a un repositorio.

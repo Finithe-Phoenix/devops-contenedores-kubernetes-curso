@@ -1,3 +1,5 @@
+> 🌐 [English](instalacion.en.md) · **Español**
+
 # 🧰 Prework — Instalación de herramientas
 
 > Hazlo **antes** del día 1. Si algo falla, no te preocupes: el día 1 empieza con

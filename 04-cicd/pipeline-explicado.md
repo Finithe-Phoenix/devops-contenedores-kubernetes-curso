@@ -1,3 +1,5 @@
+> 🌐 [English](pipeline-explicado.en.md) · **Español**
+
 # ⚙️ Lab 3 — CI/CD: el pipeline explicado
 
 > **Misión:** dejar el pipeline en **verde**. **Recompensa:** +130 XP y la medalla ⚙️ *Automatizador*.

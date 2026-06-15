@@ -1,3 +1,5 @@
+> 🌐 [English](comparativa-yaml-vs-helm.en.md) · **Español**
+
 # 🎁 Lab 8 — Helm: YAML manual vs Helm
 
 > **Misión:** empaquetar el despliegue con Helm. **Recompensa:** +100 XP y la medalla 🎁 *Empaquetador Helm*.

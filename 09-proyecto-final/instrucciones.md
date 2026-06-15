@@ -1,3 +1,5 @@
+> 🌐 [English](instrucciones.en.md) · **Español**
+
 # 🏛️ Lab 10 — Proyecto integrador final
 
 > **Misión final:** demostrar el ciclo DevOps completo. **Recompensa:** +200 XP y la medalla 🏛️ *Arquitect@ DevOps*.
