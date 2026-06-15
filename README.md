@@ -2,6 +2,7 @@
 
 ### Fundamentos · CI/CD · Orquestación · Monitoreo · DevSecOps
 
+[![CI Pipeline](https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/actions/workflows/ci.yml/badge.svg)](https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-✓-2496ED?logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-kind-326CE5?logo=kubernetes&logoColor=white)
