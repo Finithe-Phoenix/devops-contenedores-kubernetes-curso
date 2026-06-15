@@ -2,6 +2,7 @@
 # Despliega la app en el clúster kind: carga la imagen y aplica los manifiestos.
 # Uso:  bash scripts/deploy-k8s.sh [nombre-cluster]   (default: devops-course)
 set -euo pipefail
+cd "$(dirname "$0")/.." || exit 1   # funciona desde cualquier carpeta (se mueve a la raiz del repo)
 CLUSTER="${1:-devops-course}"
 IMAGE="academia-devops-app:1.0.0"
 
