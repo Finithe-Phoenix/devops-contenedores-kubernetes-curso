@@ -39,14 +39,11 @@ jobs:
         run: docker build -t academia-devops-app:${{ github.sha }} .  # tag = hash del commit
 
       - name: Escanear imagen con Trivy
-        uses: aquasecurity/trivy-action@0.24.0
-        continue-on-error: true            # en clase reporta pero no rompe el build
-        with:
-          image-ref: academia-devops-app:${{ github.sha }}
-          format: table
-          exit-code: "0"                   # en produccion: '1' para BLOQUEAR si hay vulns
-          ignore-unfixed: true
-          severity: CRITICAL,HIGH
+        # Instala Trivy en el runner y escanea la imagen recien construida.
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+          trivy image --severity CRITICAL,HIGH --ignore-unfixed --exit-code 0 academia-devops-app:${{ github.sha }}
+          # exit-code 0 => en clase reporta sin romper. En produccion: exit-code 1 para BLOQUEAR.
 
 # Siguiente paso (CD): publicar la imagen a un registry (Docker Hub / GHCR)
 # y desplegarla. Lo vemos en el dia de Kubernetes.

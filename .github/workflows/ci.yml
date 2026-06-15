@@ -35,11 +35,8 @@ jobs:
         run: docker build -t academia-devops-app:${{ github.sha }} .
 
       - name: Escanear imagen con Trivy
-        uses: aquasecurity/trivy-action@0.24.0
-        continue-on-error: true        # didactico: reporta pero no rompe el pipeline
-        with:
-          image-ref: academia-devops-app:${{ github.sha }}
-          format: table
-          exit-code: "0"
-          ignore-unfixed: true
-          severity: CRITICAL,HIGH
+        # Instalamos Trivy y escaneamos. --exit-code 0 => reporta pero NO rompe el build (didactico).
+        # En produccion usarias --exit-code 1 para BLOQUEAR si hay vulnerabilidades graves.
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+          trivy image --severity CRITICAL,HIGH --ignore-unfixed --exit-code 0 academia-devops-app:${{ github.sha }}
