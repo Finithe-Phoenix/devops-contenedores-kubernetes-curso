@@ -124,6 +124,7 @@ devops-contenedores-kubernetes-curso/
 ├── guias/               Step-by-step guide per lab (ES/EN)             ✅
 ├── retos/               "Break it & fix it" challenges (real bugs)     ✅
 ├── clase/               🎓 Class Kit: run-of-show + printables         ✅
+├── tarea/               📝 Student homework (own pace, with Plan B)    ✅
 ├── docs/                Manual, instructor guide, glossary, essay      ✅
 ├── slides/              Instructor decks (ES/EN) + student infographics ✅
 ├── gamificacion/        XP, missions and badges system                ✅

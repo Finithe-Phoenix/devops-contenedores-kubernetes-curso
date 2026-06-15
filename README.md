@@ -124,6 +124,7 @@ devops-contenedores-kubernetes-curso/
 ├── guias/               Guías paso a paso por laboratorio (ES/EN)     ✅
 ├── retos/               Retos "rómpelo y arréglalo" (bugs reales)     ✅
 ├── clase/               🎓 Kit de Clase: guion del día + imprimibles  ✅
+├── tarea/               📝 Tarea para alumnos (a su ritmo, con Plan B) ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
 ├── slides/              Decks instructor (ES/EN) + infografías alumnos ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅
