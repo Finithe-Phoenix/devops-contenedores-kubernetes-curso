@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Academia DevOps · Curso DevOps y Contenedores</title>
+  <meta name="description" content="Centro de mando del curso-taller DevOps y Contenedores con Docker & Kubernetes. App en vivo, progreso con XP, guías paso a paso e infografías descargables." />
+  <meta name="theme-color" content="#0a1726" />
+  <meta property="og:title" content="Academia DevOps — Curso DevOps y Contenedores" />
+  <meta property="og:description" content="App en vivo + progreso gamificado + guías paso a paso + infografías descargables." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a1726'/%3E%3Cpath d='M16 6l9 10-9 10-9-10z' fill='none' stroke='%2322d3ee' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
@@ -11,13 +17,13 @@
 <body>
   <!-- NAV -->
   <header class="nav">
-    <a class="brand" href="#top">
-      <span class="logo">◆</span> Academia <span class="brand-accent">DevOps</span>
-    </a>
+    <a class="brand" href="#top"><span class="logo">◆</span> Academia <span class="brand-accent">DevOps</span></a>
     <nav class="nav-links">
       <a href="#estado">Estado</a>
+      <a href="#progreso">Progreso</a>
       <a href="#cursos">Cursos</a>
       <a href="#infografias">Infografías</a>
+      <a href="#comandos">Comandos</a>
       <a href="#recursos">Recursos</a>
     </nav>
     <a class="gh" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso" target="_blank" rel="noopener">GitHub ↗</a>
@@ -25,14 +31,16 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
+    <div class="grid-bg"></div>
     <div class="hero-glow"></div>
-    <p class="kicker">// curso-taller · docker · kubernetes · devsecops</p>
-    <h1>DevOps y Contenedores<br /><span class="grad">en vivo</span></h1>
+    <p class="kicker">// curso-taller · docker · kubernetes · ci/cd · devsecops</p>
+    <h1>Centro de mando<br /><span class="grad">DevOps</span></h1>
     <p class="sub">Una sola aplicación recorriendo todo su ciclo de vida moderno.
-      Aquí la ves corriendo de verdad — y descargas todo el material del curso.</p>
+      Aquí la ves correr de verdad, sigues tu progreso con XP y descargas todo el material.</p>
     <div class="hero-pills">
       <span class="pill" id="hero-status"><span class="dot"></span> conectando…</span>
-      <a class="pill pill-link" href="#infografias">14 infografías para descargar →</a>
+      <a class="pill pill-link" href="#progreso">Tu progreso →</a>
+      <a class="pill pill-link" href="#infografias">14 infografías ↓</a>
     </div>
   </section>
 
@@ -43,7 +51,7 @@
         <h2><span class="num">01</span> Estado del sistema</h2>
         <button class="btn ghost" id="btn-refresh">↻ Actualizar</button>
       </div>
-      <p class="lead">Lo que reporta la app en tiempo real (los mismos endpoints que tus alumnos consultan).</p>
+      <p class="lead">Lo que reporta la app en tiempo real — los mismos endpoints que consultan tus alumnos.</p>
       <div class="cards" id="status-cards">
         <div class="card skeleton"><h3>/health</h3><p>cargando…</p></div>
         <div class="card skeleton"><h3>/version</h3><p>cargando…</p></div>
@@ -51,11 +59,33 @@
       </div>
     </section>
 
+    <!-- PROGRESO -->
+    <section id="progreso" class="block">
+      <div class="block-head">
+        <h2><span class="num">02</span> Tu progreso</h2>
+        <button class="btn ghost tiny" id="btn-reset">Reiniciar</button>
+      </div>
+      <p class="lead">Completa cada misión, gana XP y sube de rango. Tu avance se guarda en este navegador.
+        Cada misión tiene su <strong>guía paso a paso</strong>.</p>
+      <div class="rankbar">
+        <div class="rank-info">
+          <span class="rank-emoji" id="rank-emoji">🥚</span>
+          <div>
+            <div class="rank-name" id="rank-name">Aprendiz</div>
+            <div class="rank-next muted" id="rank-next">—</div>
+          </div>
+        </div>
+        <div class="xp-wrap">
+          <div class="xp-label"><span id="xp-now">0</span> / <span id="xp-total">0</span> XP · <span id="xp-pct">0%</span></div>
+          <div class="xpbar"><div class="xpfill" id="xpfill"></div></div>
+        </div>
+      </div>
+      <div class="missions" id="missions"></div>
+    </section>
+
     <!-- CURSOS -->
     <section id="cursos" class="block">
-      <div class="block-head">
-        <h2><span class="num">02</span> Cursos <span class="tag" id="courses-store">—</span></h2>
-      </div>
+      <div class="block-head"><h2><span class="num">03</span> Cursos <span class="tag" id="courses-store">—</span></h2></div>
       <p class="lead">Crea y elimina cursos con clics. Cada cambio viaja al API y (con Compose/K8s) se guarda en PostgreSQL.</p>
       <form id="course-form" class="course-form">
         <input name="code" placeholder="Código (ej. WEB-101)" required maxlength="30" />
@@ -70,7 +100,7 @@
     <!-- INFOGRAFÍAS -->
     <section id="infografias" class="block">
       <div class="block-head">
-        <h2><span class="num">03</span> Infografías</h2>
+        <h2><span class="num">04</span> Infografías</h2>
         <div class="seg" role="tablist">
           <button class="seg-btn active" data-lang="es">Español</button>
           <button class="seg-btn" data-lang="en">English</button>
@@ -84,12 +114,26 @@
       <div class="gallery" id="gallery"></div>
     </section>
 
+    <!-- COMANDOS -->
+    <section id="comandos" class="block">
+      <div class="block-head"><h2><span class="num">05</span> Comandos rápidos</h2></div>
+      <p class="lead">Los esenciales para arrancar. Toca el comando para copiarlo.</p>
+      <div class="cmd-list" id="cmd-list">
+        <div class="cmd" data-cmd="git clone https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso"><code>git clone …/devops-contenedores-kubernetes-curso</code><span class="copy">copiar</span></div>
+        <div class="cmd" data-cmd="docker compose -f 03-compose/docker-compose.yml up -d --build"><code>docker compose up -d --build</code><span class="copy">copiar</span></div>
+        <div class="cmd" data-cmd="curl http://localhost:8080/health"><code>curl http://localhost:8080/health</code><span class="copy">copiar</span></div>
+        <div class="cmd" data-cmd="bash scripts/create-kind-cluster.sh devops-course"><code>bash scripts/create-kind-cluster.sh</code><span class="copy">copiar</span></div>
+        <div class="cmd" data-cmd="helm install academia ./06-helm/academia-app-chart -n academia --create-namespace"><code>helm install academia ./06-helm/academia-app-chart</code><span class="copy">copiar</span></div>
+        <div class="cmd" data-cmd="trivy image academia-devops-app:1.0.0"><code>trivy image academia-devops-app:1.0.0</code><span class="copy">copiar</span></div>
+      </div>
+    </section>
+
     <!-- RECURSOS -->
     <section id="recursos" class="block">
-      <div class="block-head"><h2><span class="num">04</span> Recursos del curso</h2></div>
+      <div class="block-head"><h2><span class="num">06</span> Recursos del curso</h2></div>
       <div class="links">
-        <a class="link-card" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso" target="_blank" rel="noopener">
-          <h3>📦 Repositorio</h3><p>Todo el curso, bilingüe (ES/EN), con CI en verde.</p></a>
+        <a class="link-card" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/tree/main/guias" target="_blank" rel="noopener">
+          <h3>👣 Guías paso a paso</h3><p>Una guía detallada por laboratorio (ES/EN).</p></a>
         <a class="link-card" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/tree/main/00-prework" target="_blank" rel="noopener">
           <h3>🧰 Prework</h3><p>Instalación, checklist y troubleshooting.</p></a>
         <a class="link-card" href="https://github.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/tree/main/gamificacion" target="_blank" rel="noopener">
@@ -109,13 +153,13 @@
   <div class="lightbox" id="lightbox" hidden>
     <button class="lb-close" id="lb-close" aria-label="Cerrar">✕</button>
     <button class="lb-nav lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
-    <figure class="lb-fig">
-      <img id="lb-img" alt="" />
-      <figcaption id="lb-cap"></figcaption>
-    </figure>
+    <figure class="lb-fig"><img id="lb-img" alt="" /><figcaption id="lb-cap"></figcaption></figure>
     <button class="lb-nav lb-next" id="lb-next" aria-label="Siguiente">›</button>
     <a class="btn lb-dl" id="lb-dl" download>⬇ Descargar imagen</a>
   </div>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <div class="toast" id="toast" hidden></div>
 
   <script src="app.js"></script>
 </body>

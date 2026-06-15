@@ -54,6 +54,10 @@ at the top of every document.
 or printing) that live in [`slides/`](slides/README.en.md):
 `Student_Infographics_EN.pptx` and `Infografias_Alumnos_ES.pptx`.
 
+**Step by step:** every lab has a **detailed guide** in [`guias/`](guias/README.en.md)
+(exact commands, *"what you'll see"*, troubleshooting and how to teach it). And with `make` you get
+one-command shortcuts: `make check`, `make compose`, `make deploy`, `make help` (see `Makefile`).
+
 ---
 
 ## 🗺️ Course map
@@ -104,6 +108,7 @@ devops-contenedores-kubernetes-curso/
 ├── 07-observability/    Prometheus, Grafana, logs                      ✅
 ├── 08-devsecops/        Trivy, checklists, secure/insecure examples    ✅
 ├── 09-proyecto-final/   Integrative challenge + rubric                 ✅
+├── guias/               Step-by-step guide per lab (ES/EN)             ✅
 ├── docs/                Manual, instructor guide, glossary, essay      ✅
 ├── slides/              Instructor decks (ES/EN) + student infographics ✅
 ├── gamificacion/        XP, missions and badges system                ✅

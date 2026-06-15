@@ -54,6 +54,10 @@ arriba de cada documento.
 para chat o imprimir) que viven en [`slides/`](slides/README.md):
 `Infografias_Alumnos_ES.pptx` y `Student_Infographics_EN.pptx`.
 
+**Paso a paso:** cada laboratorio tiene una **guía detallada** en [`guias/`](guias/README.md)
+(comandos exactos, *"lo que verás"*, troubleshooting y cómo enseñarlo). Y con `make` tienes atajos
+de un comando: `make check`, `make compose`, `make deploy`, `make help` (ver `Makefile`).
+
 ---
 
 ## 🗺️ Mapa del curso
@@ -104,6 +108,7 @@ devops-contenedores-kubernetes-curso/
 ├── 07-observability/    Prometheus, Grafana, logs                     ✅
 ├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ✅
 ├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
+├── guias/               Guías paso a paso por laboratorio (ES/EN)     ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
 ├── slides/              Decks instructor (ES/EN) + infografías alumnos ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅

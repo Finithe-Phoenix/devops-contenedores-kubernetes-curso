@@ -40,3 +40,20 @@ jobs:
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
           trivy image --severity CRITICAL,HIGH --ignore-unfixed --exit-code 0 academia-devops-app:${{ github.sha }}
+
+  # Segundo job (corre en paralelo): valida la calidad del chart de Helm y del Dockerfile.
+  lint:
+    name: Lint · Helm · Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del codigo
+        uses: actions/checkout@v4
+
+      - name: Helm lint (valida el chart)
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          helm lint ./06-helm/academia-app-chart
+
+      - name: Lint del Dockerfile (hadolint)
+        # --failure-threshold error: los avisos se reportan pero solo los ERRORES rompen el build.
+        run: docker run --rm -i hadolint/hadolint:latest hadolint --failure-threshold error - < 01-app/node/Dockerfile
