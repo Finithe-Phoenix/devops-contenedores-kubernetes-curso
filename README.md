@@ -84,12 +84,13 @@ devops-contenedores-kubernetes-curso/
 ├── 01-app/node/         La app demo "Academia DevOps App" (Node.js)   ✅
 ├── 02-docker/           Dockerfiles didácticos (inseguro vs seguro)   ✅
 ├── 03-compose/          App + PostgreSQL con Docker Compose           ✅
-├── 04-cicd/             Pipelines GitHub Actions / Jenkins            ⏳
-├── 05-kubernetes/       Manifiestos: deployment, service, config...   ⏳
-├── 06-helm/             Chart de Helm                                 ⏳
-├── 07-observability/    Prometheus, Grafana, logs                     ⏳
-├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ⏳
-├── 09-proyecto-final/   Reto integrador + rúbrica                     ⏳
+├── 04-cicd/             Pipelines GitHub Actions / Jenkins            ✅
+├── 05-kubernetes/       Manifiestos: deployment, service, config...   ✅
+├── 06-helm/             Chart de Helm                                 ✅
+├── 07-observability/    Prometheus, Grafana, logs                     ✅
+├── 08-devsecops/        Trivy, checklists, ejemplos seguro/inseguro   ✅
+├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
+├── docs/                Manual, guía instructor, glosario, ensayo     ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅
 └── scripts/             Utilidades del laboratorio                    ✅
 ```
@@ -115,14 +116,14 @@ Kubernetes (kind) · Helm · Trivy · Prometheus · Grafana.
 - [x] **M1** App demo (`/health`, `/version`, `/courses`) + pruebas
 - [x] **M2** Docker (Dockerfile multi-stage + variantes didácticas)
 - [x] **M3** Docker Compose (app + PostgreSQL)
-- [ ] **M4** CI/CD (GitHub Actions + Jenkinsfile)
-- [ ] **M5** Kubernetes (namespace, deployment, service, configmap, secret)
-- [ ] **M6** Helm chart
-- [ ] **M7** DevSecOps (Trivy, checklists)
-- [ ] **M8** Observabilidad (Prometheus/Grafana, logs)
-- [ ] **M9** Docs (manual participante, guía instructor, rúbrica, glosario)
+- [x] **M4** CI/CD (GitHub Actions + Jenkinsfile)
+- [x] **M5** Kubernetes (namespace, deployment, service, configmap, secret)
+- [x] **M6** Helm chart
+- [x] **M7** DevSecOps (Trivy, checklists)
+- [x] **M8** Observabilidad (Prometheus/Grafana, logs)
+- [x] **M9** Docs (manual participante, guía instructor, rúbrica, glosario)
 - [ ] **M10** Slides (4 decks)
-- [ ] **M11** Ensayo técnico end-to-end + Plan B
+- [x] **M11** Ensayo técnico end-to-end + Plan B
 
 ---
 
