@@ -28,6 +28,15 @@ It's not a list of loose tools. It's **a complete technical story**.
 
 ---
 
+## 🎓 Teaching the class? Start here
+
+1. **Start everything with one command:** `pwsh scripts/clase.ps1` (or `bash scripts/clase.sh`) → it brings up
+   the app and opens the **Command Center** at `http://localhost:8080/`.
+2. **Follow your run-of-show:** the [**🎓 Class Kit**](clase/README.en.md) has the *pre-flight*, the
+   **minute-by-minute** 4-day agenda, the **panic button** and the **printable PDFs** (cockpit + achievement card).
+
+---
+
 ## 🎮 This is a game (with XP and badges)
 
 The course is set up as a series of **missions**. Each completed lab grants
@@ -114,6 +123,7 @@ devops-contenedores-kubernetes-curso/
 ├── 09-proyecto-final/   Integrative challenge + rubric                 ✅
 ├── guias/               Step-by-step guide per lab (ES/EN)             ✅
 ├── retos/               "Break it & fix it" challenges (real bugs)     ✅
+├── clase/               🎓 Class Kit: run-of-show + printables         ✅
 ├── docs/                Manual, instructor guide, glossary, essay      ✅
 ├── slides/              Instructor decks (ES/EN) + student infographics ✅
 ├── gamificacion/        XP, missions and badges system                ✅

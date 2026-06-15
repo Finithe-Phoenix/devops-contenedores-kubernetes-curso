@@ -10,6 +10,9 @@ CLUSTER ?= devops-course
 help: ## Muestra esta ayuda
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
+clase: ## Enciende TODO para la clase (app + Centro de Mando)
+	bash scripts/clase.sh
+
 check: ## Lab 0 — valida el ambiente
 	bash scripts/check-env.sh
 
@@ -50,4 +53,4 @@ clean: ## Reinicia el laboratorio (borra namespace y contenedor)
 clean-all: clean ## Limpieza total: también borra el clúster kind
 	bash scripts/delete-kind-cluster.sh $(CLUSTER)
 
-.PHONY: help check install test docker run compose compose-down kind deploy helm scan clean clean-all
+.PHONY: help clase check install test docker run compose compose-down kind deploy helm scan clean clean-all

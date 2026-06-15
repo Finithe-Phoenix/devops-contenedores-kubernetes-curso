@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Cockpit del Instructor</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; color: #0b1b2b; font-size: 10.5px; line-height: 1.4; }
+  .mono { font-family: "Consolas", monospace; }
+  h1 { font-size: 19px; color: #0b1b2b; }
+  h1 .a { color: #0891b2; }
+  .sub { color: #5b6b7c; font-size: 11px; margin-bottom: 10px; }
+  .row { display: flex; gap: 10px; }
+  .col { flex: 1; }
+  .box { border: 1.5px solid #cfd9e3; border-radius: 8px; padding: 9px 11px; margin-bottom: 9px; }
+  .box.cyan { border-color: #0891b2; background: #ecfdff; }
+  .box h2 { font-size: 12px; margin-bottom: 5px; color: #0891b2; text-transform: uppercase; letter-spacing: .4px; }
+  .cmd { background: #0b1b2b; color: #34d399; border-radius: 6px; padding: 7px 10px; font-family: "Consolas", monospace; font-size: 11px; margin: 4px 0; }
+  .cmd b { color: #22d3ee; }
+  table { width: 100%; border-collapse: collapse; }
+  td, th { text-align: left; padding: 3px 6px; border-bottom: 1px solid #e4ebf2; vertical-align: top; }
+  th { color: #0891b2; font-size: 9.5px; text-transform: uppercase; }
+  .chk { color: #0891b2; }
+  ul { margin-left: 16px; }
+  li { margin-bottom: 2px; }
+  .day { page-break-before: always; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .small { font-size: 9.5px; color: #5b6b7c; }
+  .foot { margin-top: 8px; text-align: center; color: #5b6b7c; font-size: 9px; }
+</style>
+</head>
+<body>
+  <h1>🎓 Cockpit del <span class="a">Instructor</span></h1>
+  <div class="sub">DevOps y Contenedores con Docker &amp; Kubernetes · Tec de Toluca · Daniel E. González Ramírez</div>
+
+  <div class="box cyan">
+    <h2>🔌 Encender la clase (1 comando)</h2>
+    <div class="cmd">PS&gt; <b>pwsh scripts/clase.ps1</b>   &nbsp;·&nbsp;   bash scripts/clase.sh</div>
+    <div class="small">Verifica Docker, baja imágenes, levanta app + DB y abre → <b class="mono">http://localhost:8080/</b>.
+      Apagar: <span class="mono">docker compose -f 03-compose/docker-compose.yml down</span></div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="box">
+        <h2>✅ Pre-flight (30 min antes)</h2>
+        <ul>
+          <li><span class="chk">☐</span> Docker Desktop abierto y estable 🐳</li>
+          <li><span class="chk">☐</span> <span class="mono">pwsh scripts/clase.ps1</span> → abre en verde</li>
+          <li><span class="chk">☐</span> Slides del día abiertos (carpeta <span class="mono">slides/</span>)</li>
+          <li><span class="chk">☐</span> <b>Día 3/4:</b> clúster probado (<span class="mono">minikube start</span> / kind)</li>
+          <li><span class="chk">☐</span> Imprimibles + USB de emergencia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box">
+        <h2>🔗 Accesos rápidos</h2>
+        <ul>
+          <li><b>Centro de Mando:</b> <span class="mono">localhost:8080</span> (tour + Detective)</li>
+          <li><b>Guion del día:</b> <span class="mono">clase/README.md</span></li>
+          <li><b>Guías paso a paso:</b> <span class="mono">guias/</span></li>
+          <li><b>Retos:</b> <span class="mono">retos/</span> · <b>Slides:</b> <span class="mono">slides/</span></li>
+          <li><b>Guía instructor:</b> <span class="mono">docs/Guia_Instructor.md</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>🆘 Botón de pánico</h2>
+    <table>
+      <tr><th>Síntoma</th><th>Fix inmediato</th></tr>
+      <tr><td>Docker no responde</td><td>Abre Docker Desktop, espera la ballena, reintenta</td></tr>
+      <tr><td>Puerto 8080 ocupado</td><td class="mono">docker compose -f 03-compose/docker-compose.yml down</td></tr>
+      <tr><td>Compose no recrea</td><td class="mono">... up -d --force-recreate</td></tr>
+      <tr><td>/health → "db":"down"</td><td>Espera Postgres healthy; revisa DB_HOST=db</td></tr>
+      <tr><td>ImagePullBackOff (kind)</td><td class="mono">kind load docker-image academia-devops-app:1.0.0 --name devops-course</td></tr>
+      <tr><td>ImagePullBackOff (minikube)</td><td class="mono">docker save academia-devops-app:1.0.0 -o img.tar &amp;&amp; minikube image load img.tar</td></tr>
+      <tr><td>minikube no levanta</td><td class="mono">minikube delete &amp;&amp; minikube start</td></tr>
+    </table>
+  </div>
+
+  <div class="foot">Pégalo junto a tu laptop. El guion completo minuto a minuto está en <b>clase/README.md</b>.</div>
+
+  <!-- PÁGINA 2: AGENDA -->
+  <div class="day">
+    <h1>🗓️ Agenda de los <span class="a">4 días</span></h1>
+    <div class="sub">9:00–15:00 · Concepto → Demostración → Laboratorio → "¿Cómo lo enseño a mis alumnos?"</div>
+    <div class="grid2">
+      <div class="box">
+        <h2>Día 1 · Docker</h2>
+        <div class="small mono">slides/01_Dia_1 · guías 00, 01</div>
+        <ul>
+          <li>9:00 Apertura — proyecta el Centro de Mando, /health</li>
+          <li>9:40 Fundamentos DevOps (deck + dinámica)</li>
+          <li>10:40 Git · 11:45 Docker (imagen vs contenedor)</li>
+          <li><b>12:45 Lab 1</b> — construir y correr la imagen 🐳</li>
+          <li>14:00 Cierre + reto Docker del Detective</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>Día 2 · Compose + CI/CD</h2>
+        <div class="small mono">slides/02_Dia_2 · guías 02, 03, 04</div>
+        <ul>
+          <li>9:00 Repaso + demo persistencia</li>
+          <li><b>9:30 Lab 2</b> — app + PostgreSQL 🧩</li>
+          <li><b>11:05 Lab 3</b> — pipeline verde; rompe un test ⚙️</li>
+          <li><b>13:30 Lab 4</b> — trivy image 🛡️</li>
+          <li>14:30 Cierre + retos Compose</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>Día 3 · Kubernetes + Helm</h2>
+        <div class="small mono">slides/03_Dia_3 · guías 05–08</div>
+        <ul>
+          <li>⚠️ Levanta el clúster ANTES del bloque 2</li>
+          <li>9:00 Intro K8s · 10:00 clúster + cargar imagen</li>
+          <li><b>11:00 Lab 5</b> deploy ☸️ · <b>12:15 Lab 6</b> config/secret 🔐</li>
+          <li><b>13:00 Lab 7</b> escalar/rollback 📈</li>
+          <li><b>14:00 Lab 8</b> Helm 🎁</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>Día 4 · Observar + Proyecto</h2>
+        <div class="small mono">slides/04_Dia_4 · guías 09, 10</div>
+        <ul>
+          <li>9:00 Observabilidad 🔭 (Plan B: /metrics + top)</li>
+          <li>11:30 Logging · 12:15 DevSecOps (probes/limits)</li>
+          <li>13:20 GitOps/IaC (solo concepto)</li>
+          <li><b>14:00 Proyecto final</b> + rúbrica 🏛️</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot">Cada lab tiene su guía paso a paso en <b>guias/</b>. Marca el progreso en el Centro de Mando.</div>
+  </div>
+</body>
+</html>

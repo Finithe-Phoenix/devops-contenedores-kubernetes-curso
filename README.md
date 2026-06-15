@@ -28,6 +28,15 @@ No es una lista de herramientas sueltas. Es **una historia técnica completa**.
 
 ---
 
+## 🎓 ¿Vas a impartir la clase? Empieza aquí
+
+1. **Enciende todo con un comando:** `pwsh scripts/clase.ps1` (o `bash scripts/clase.sh`) → levanta la app
+   y abre el **Centro de Mando** en `http://localhost:8080/`.
+2. **Sigue tu guion del día:** el [**🎓 Kit de Clase**](clase/README.md) trae el *pre-flight*, la agenda
+   **minuto a minuto** de los 4 días, el **botón de pánico** y los **imprimibles en PDF** (cockpit + tarjeta de logros).
+
+---
+
 ## 🎮 Esto es un juego (con XP y medallas)
 
 El curso está montado como una serie de **misiones**. Cada laboratorio completado da
@@ -114,6 +123,7 @@ devops-contenedores-kubernetes-curso/
 ├── 09-proyecto-final/   Reto integrador + rúbrica                     ✅
 ├── guias/               Guías paso a paso por laboratorio (ES/EN)     ✅
 ├── retos/               Retos "rómpelo y arréglalo" (bugs reales)     ✅
+├── clase/               🎓 Kit de Clase: guion del día + imprimibles  ✅
 ├── docs/                Manual, guía instructor, glosario, ensayo     ✅
 ├── slides/              Decks instructor (ES/EN) + infografías alumnos ✅
 ├── gamificacion/        Sistema de XP, misiones y medallas            ✅

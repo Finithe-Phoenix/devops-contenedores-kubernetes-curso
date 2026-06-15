@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Tarjeta de Logros</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; color: #0b1b2b; }
+  .card { border: 3px solid #0891b2; border-radius: 16px; padding: 20px 22px; }
+  h1 { font-size: 24px; } h1 .a { color: #0891b2; }
+  .sub { color: #5b6b7c; font-size: 12px; margin-bottom: 14px; }
+  .fields { display: flex; gap: 14px; margin-bottom: 16px; font-size: 13px; }
+  .fields .f { flex: 1; border-bottom: 1.5px solid #0b1b2b; padding-bottom: 3px; }
+  .fields .lbl { color: #5b6b7c; font-size: 10px; display: block; }
+  .medals { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 16px; }
+  .m { display: flex; align-items: center; gap: 9px; border: 1.5px solid #cfd9e3; border-radius: 10px; padding: 8px 10px; }
+  .m .chk { width: 20px; height: 20px; border: 2px solid #0891b2; border-radius: 5px; flex: 0 0 auto; }
+  .m .em { font-size: 20px; }
+  .m .t { font-size: 12.5px; font-weight: 600; }
+  .m .s { font-size: 10px; color: #5b6b7c; }
+  .m .xp { margin-left: auto; font-family: "Consolas", monospace; font-size: 11px; color: #b8860b; font-weight: 700; }
+  .ranks { border-top: 2px solid #e4ebf2; padding-top: 12px; }
+  .ranks h2 { font-size: 13px; color: #0891b2; margin-bottom: 7px; }
+  .ladder { display: flex; flex-wrap: wrap; gap: 8px; font-size: 11.5px; }
+  .rk { border: 1.5px solid #cfd9e3; border-radius: 999px; padding: 4px 11px; }
+  .total { margin-top: 12px; font-size: 14px; }
+  .total b { font-family: "Consolas", monospace; }
+  .bonus { margin-top: 8px; font-size: 11px; color: #5b6b7c; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>🏆 Tarjeta de <span class="a">Logros</span></h1>
+    <div class="sub">DevOps y Contenedores con Docker &amp; Kubernetes · completa misiones, gana XP, sube de rango</div>
+
+    <div class="fields">
+      <div class="f"><span class="lbl">PARTICIPANTE</span>&nbsp;</div>
+      <div class="f"><span class="lbl">EQUIPO</span>&nbsp;</div>
+      <div class="f"><span class="lbl">FECHA</span>&nbsp;</div>
+    </div>
+
+    <div class="medals">
+      <div class="m"><span class="chk"></span><span class="em">🧰</span><div><div class="t">Kit Listo</div><div class="s">Lab 0 · Ambiente</div></div><span class="xp">+30</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🐳</span><div><div class="t">Capitán de Contenedores</div><div class="s">Lab 1 · Docker</div></div><span class="xp">+100</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🧩</span><div><div class="t">Maestro Multicontenedor</div><div class="s">Lab 2 · Compose</div></div><span class="xp">+120</span></div>
+      <div class="m"><span class="chk"></span><span class="em">⚙️</span><div><div class="t">Automatizador</div><div class="s">Lab 3 · CI/CD</div></div><span class="xp">+130</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🛡️</span><div><div class="t">Guardián Shift-Left</div><div class="s">Lab 4 · Trivy</div></div><span class="xp">+90</span></div>
+      <div class="m"><span class="chk"></span><span class="em">☸️</span><div><div class="t">Timonel del Clúster</div><div class="s">Lab 5 · Kubernetes</div></div><span class="xp">+140</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🔐</span><div><div class="t">Custodio de Secretos</div><div class="s">Lab 6 · Config/Secret</div></div><span class="xp">+70</span></div>
+      <div class="m"><span class="chk"></span><span class="em">📈</span><div><div class="t">Operador en Vivo</div><div class="s">Lab 7 · Escalar/Rollback</div></div><span class="xp">+110</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🎁</span><div><div class="t">Empaquetador Helm</div><div class="s">Lab 8 · Helm</div></div><span class="xp">+100</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🔭</span><div><div class="t">Observador</div><div class="s">Lab 9 · Monitoreo</div></div><span class="xp">+90</span></div>
+      <div class="m"><span class="chk"></span><span class="em">🏛️</span><div><div class="t">Arquitect@ DevOps</div><div class="s">Lab 10 · Proyecto final</div></div><span class="xp">+200</span></div>
+      <div class="m" style="border-style:dashed;"><span class="em">⭐</span><div><div class="t">Bonus docente</div><div class="s">"¿Cómo lo enseño a mis alumnos?"</div></div><span class="xp">+15 c/u</span></div>
+    </div>
+
+    <div class="ranks">
+      <h2>Rangos</h2>
+      <div class="ladder">
+        <span class="rk">🥚 Aprendiz · 0</span>
+        <span class="rk">🐳 Operador · 150</span>
+        <span class="rk">⚙️ Ingeniero · 350</span>
+        <span class="rk">☸️ Pilot@ K8s · 600</span>
+        <span class="rk">🏛️ Arquitect@ DevOps · 900</span>
+      </div>
+      <div class="total">XP TOTAL: <b>__________ / 1,180</b> &nbsp;·&nbsp; RANGO ALCANZADO: ____________________</div>
+      <div class="bonus">Marca cada medalla al completar su misión. El progreso también se guarda en el Centro de Mando (la app web).</div>
+    </div>
+  </div>
+</body>
+</html>
