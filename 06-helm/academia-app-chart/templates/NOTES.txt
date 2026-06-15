@@ -1,0 +1,16 @@
+🎁 Academia DevOps App desplegada con Helm.
+
+  Release:   {{ .Release.Name }}
+  Namespace: {{ .Release.Namespace }}
+  Réplicas:  {{ .Values.replicaCount }}
+  Imagen:    {{ .Values.image.repository }}:{{ .Values.image.tag }}
+
+Para probarla:
+  kubectl port-forward svc/{{ include "academia-app.name" . }}-service 8080:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+  curl http://localhost:8080/health
+
+Comandos útiles:
+  helm list -n {{ .Release.Namespace }}
+  helm upgrade {{ .Release.Name }} ./06-helm/academia-app-chart -n {{ .Release.Namespace }} --set replicaCount=4
+  helm rollback {{ .Release.Name }} 1 -n {{ .Release.Namespace }}
+  helm uninstall {{ .Release.Name }} -n {{ .Release.Namespace }}

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: academia-app
+  namespace: academia
+  labels:
+    app: academia-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: academia-app
+  template:
+    metadata:
+      labels:
+        app: academia-app
+    spec:
+      containers:
+        - name: academia-app
+          image: academia-devops-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: academia-config
+
+          # --- Probes: Kubernetes vigila la salud del contenedor ---
+          readinessProbe:           # ¿está LISTA para recibir tráfico?
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:            # ¿sigue VIVA? si falla, la reinicia
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          # --- Resource limits: cuánta CPU/memoria puede usar ---
+          resources:
+            requests:               # lo que reserva
+              memory: "64Mi"
+              cpu: "100m"
+            limits:                 # el tope que no puede pasar
+              memory: "128Mi"
+              cpu: "250m"
+
+          # --- Seguridad (DevSecOps): mínimo privilegio ---
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

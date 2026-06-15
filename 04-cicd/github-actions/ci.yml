@@ -1,0 +1,52 @@
+# =====================================================================
+#  COPIA DIDACTICA del pipeline (la que SE EJECUTA vive en
+#  .github/workflows/ci.yml en la raiz del repo).
+#  Aqui esta comentada linea por linea para explicarla en clase.
+# =====================================================================
+name: CI Pipeline
+
+# 'on' = los EVENTOS que disparan el pipeline
+on:
+  push:
+    branches: ["main"]          # cada vez que se sube codigo a main
+  pull_request:
+    branches: ["main"]          # y en cada propuesta de cambio (PR)
+
+jobs:
+  build-test-scan:              # un JOB = un conjunto de pasos en una maquina
+    runs-on: ubuntu-latest      # el RUNNER: una VM Ubuntu efimera de GitHub
+    defaults:
+      run:
+        working-directory: 01-app/node   # los comandos corren dentro de la app
+    steps:                      # los STEPS se ejecutan en orden, de arriba a abajo
+      - name: Checkout del codigo
+        uses: actions/checkout@v4         # trae el repositorio al runner
+
+      - name: Configurar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm                       # cachea node_modules entre corridas
+          cache-dependency-path: 01-app/node/package-lock.json
+
+      - name: Instalar dependencias (npm ci)
+        run: npm ci                        # 'ci' = instalacion limpia y reproducible
+
+      - name: Ejecutar pruebas
+        run: npm test                      # si un test falla, el pipeline se pone ROJO
+
+      - name: Construir imagen Docker
+        run: docker build -t academia-devops-app:${{ github.sha }} .  # tag = hash del commit
+
+      - name: Escanear imagen con Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        continue-on-error: true            # en clase reporta pero no rompe el build
+        with:
+          image-ref: academia-devops-app:${{ github.sha }}
+          format: table
+          exit-code: "0"                   # en produccion: '1' para BLOQUEAR si hay vulns
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+# Siguiente paso (CD): publicar la imagen a un registry (Docker Hub / GHCR)
+# y desplegarla. Lo vemos en el dia de Kubernetes.

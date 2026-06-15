@@ -1,0 +1,27 @@
+# values.yaml — los "parámetros" del chart.
+# Cambiar aquí evita tocar las plantillas: mismo chart, distintos despliegues.
+
+replicaCount: 2
+
+image:
+  repository: academia-devops-app
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+# Se inyecta como variables de entorno vía ConfigMap
+config:
+  APP_ENV: "training"
+  APP_VERSION: "1.0.0"
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "100m"
+  limits:
+    memory: "128Mi"
+    cpu: "250m"

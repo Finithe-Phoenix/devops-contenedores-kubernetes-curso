@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: academia-app
+  namespace: academia
+  labels:
+    app: academia-app
+spec:
+  replicas: 2                       # 2 réplicas = 2 Pods idénticos
+  selector:
+    matchLabels:
+      app: academia-app             # el Deployment gestiona los Pods con esta etiqueta
+  template:                         # plantilla del Pod
+    metadata:
+      labels:
+        app: academia-app           # debe COINCIDIR con el selector de arriba
+    spec:
+      containers:
+        - name: academia-app
+          image: academia-devops-app:1.0.0
+          imagePullPolicy: IfNotPresent   # usa la imagen local (cargada con `kind load`)
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: academia-config     # inyecta APP_ENV y APP_VERSION como variables
