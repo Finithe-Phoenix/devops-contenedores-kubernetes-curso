@@ -3,14 +3,21 @@
 
 import express from 'express';
 import client from 'prom-client';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { coursesRouter } from './routes/courses.js';
 
 export const VERSION = process.env.APP_VERSION ?? '1.0.0';
 const ARRANQUE = Date.now();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 export function createApp(repo) {
   const app = express();
   app.use(express.json());
+
+  // --- Frontend estatico (la UI visual del curso, en public/) ---
+  app.use(express.static(PUBLIC_DIR));
 
   // --- Metricas Prometheus (se usaran en el dia de Observabilidad) ---
   const registry = new client.Registry();
@@ -62,12 +69,13 @@ export function createApp(repo) {
   // --- Recurso de negocio ---
   app.use('/courses', coursesRouter(repo));
 
-  // GET / — portada amigable
-  app.get('/', (req, res) => {
+  // GET /api — portada JSON (la UI vive en / via public/index.html)
+  app.get('/api', (req, res) => {
     res.json({
       app: 'Academia DevOps App',
       mensaje: 'Bienvenido al laboratorio del curso DevOps y Contenedores con Docker & Kubernetes',
       version: VERSION,
+      ui: '/',
       endpoints: ['/health', '/version', '/metrics', '/courses'],
     });
   });
