@@ -5,6 +5,25 @@
 > Do this **before** day 1. If something fails, don't worry: day 1 starts with
 > **Lab 0** to validate everything as a group. But arriving with this ready gives you an edge.
 
+## 🚀 Automatic install (Windows) — the fast way
+
+Don't want to install by hand? An **installer sets everything up**: WSL2 + Docker + Git + Node +
+kubectl + kind + Helm + Trivy + VS Code, and clones the course material. It asks for **Administrator** rights.
+
+**Option A — one line** (paste into PowerShell and press Enter):
+
+```powershell
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Finithe-Phoenix/devops-contenedores-kubernetes-curso/main/00-prework/instalar-windows.ps1 -OutFile $env:TEMP\instalar.ps1; & $env:TEMP\instalar.ps1"
+```
+
+**Option B — download the file** [`instalar-windows.ps1`](instalar-windows.ps1) → right-click → *Run with PowerShell*.
+
+When it finishes: **reboot**, open **Docker Desktop** (wait for the 🐳 whale) and validate with
+`bash scripts/check-env.sh`. Does Docker ask for **WSL2**? The installer enables it; to do it by hand:
+`wsl --install` in PowerShell as Administrator + reboot.
+
+> 🍎🐧 **macOS / Linux:** use `brew` / your distro's package manager (tables below) + Docker Desktop or Docker Engine.
+
 ## The essentials (days 1 and 2)
 
 | Tool | What for | Windows | macOS | Linux |
