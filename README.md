@@ -86,24 +86,40 @@ con **bugs reales** (Docker, Compose, Kubernetes) para diagnosticar y reparar. V
 
 ## ⚡ Inicio rápido (5 minutos)
 
+**¿Solo quieres ver el sitio?** Con **Docker Desktop** abierto, desde la raíz del repo:
+
+```bash
+docker compose up -d --build      # construye y levanta TODO
+# -> abre  http://localhost:8080/  (Centro de Mando, infografías, descargas)
+```
+
+📖 Las 3 formas de levantarlo (Docker, launcher, o solo Node) están en **[EJECUTAR-LOCAL.md](EJECUTAR-LOCAL.md)**.
+
+<details><summary>Ruta paso a paso (labs)</summary>
+
 ```bash
 # 1) Clona el repo
 git clone <url-de-este-repo>
 cd devops-contenedores-kubernetes-curso
 
 # 2) Valida tu ambiente (Lab 0)
-bash scripts/check-env.sh
+bash scripts/check-env.sh          # 🪟 Windows: pwsh scripts/check-env.ps1
 
 # 3) Corre la app demo en local
 cd 01-app/node
 npm install
-npm start            # -> http://localhost:8080/health
+npm start            # -> http://localhost:8080/
 
-# 4) Conténtenla con Docker (Lab 1)
+# 4) Contenedízala con Docker (Lab 1)
 docker build -t academia-devops-app:1.0.0 .
 docker run -d -p 8080:8080 --name academia academia-devops-app:1.0.0
-curl http://localhost:8080/health
+curl http://localhost:8080/health  # 🪟 Windows: curl.exe ...
 ```
+
+</details>
+
+> 🪟 **¿Windows?** Corre los comandos en **PowerShell** (no `bash`). Guía completa:
+> [chuleta de PowerShell](guias/windows-powershell.md) · [terminal Linux con WSL2](guias/terminal-linux-wsl.md).
 
 ---
 

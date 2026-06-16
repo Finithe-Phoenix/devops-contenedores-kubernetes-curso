@@ -86,24 +86,40 @@ the Command Center (the web app) → **🕵️ Bug Detective** section.
 
 ## ⚡ Quick start (5 minutes)
 
+**Just want to see the site?** With **Docker Desktop** open, from the repo root:
+
+```bash
+docker compose up -d --build      # builds and starts EVERYTHING
+# -> open  http://localhost:8080/  (Command Center, infographics, downloads)
+```
+
+📖 The 3 ways to run it (Docker, launcher, or just Node) are in **[EJECUTAR-LOCAL.en.md](EJECUTAR-LOCAL.en.md)**.
+
+<details><summary>Step-by-step path (labs)</summary>
+
 ```bash
 # 1) Clone the repo
 git clone <url-de-este-repo>
 cd devops-contenedores-kubernetes-curso
 
 # 2) Validate your environment (Lab 0)
-bash scripts/check-env.sh
+bash scripts/check-env.sh          # 🪟 Windows: pwsh scripts/check-env.ps1
 
 # 3) Run the demo app locally
 cd 01-app/node
 npm install
-npm start            # -> http://localhost:8080/health
+npm start            # -> http://localhost:8080/
 
 # 4) Containerize it with Docker (Lab 1)
 docker build -t academia-devops-app:1.0.0 .
 docker run -d -p 8080:8080 --name academia academia-devops-app:1.0.0
-curl http://localhost:8080/health
+curl http://localhost:8080/health  # 🪟 Windows: curl.exe ...
 ```
+
+</details>
+
+> 🪟 **On Windows?** Run the commands in **PowerShell** (not `bash`). Full guide:
+> [PowerShell cheat sheet](guias/windows-powershell.en.md) · [Linux terminal with WSL2](guias/terminal-linux-wsl.en.md).
 
 ---
 

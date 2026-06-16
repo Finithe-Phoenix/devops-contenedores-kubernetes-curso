@@ -1,0 +1,55 @@
+# docker-compose.yml (RAIZ) — Levanta TODO el sitio del curso con un comando.
+#
+# Para alumnos: la forma mas facil de correr el proyecto en tu compu.
+#
+#   docker compose up -d --build      # construye y levanta app + base de datos
+#   -> abre  http://localhost:8080/   (Centro de Mando, infografias, descargas)
+#
+#   docker compose ps                 # ver estado
+#   docker compose logs -f app        # ver registros de la app
+#   docker compose down               # apagar (conserva los datos)
+#   docker compose down -v            # apagar y borrar el volumen de datos
+#
+# Es el MISMO stack que el Lab 2 (03-compose/), con el mismo nombre de proyecto,
+# para que no se dupliquen contenedores. La version de 03-compose/ es la que se
+# explica paso a paso en la guia del Lab 2.
+
+name: academia-devops
+
+services:
+  app:
+    build:
+      context: ./01-app/node       # construye la imagen desde el codigo de la app
+    image: academia-devops-app:1.0.0
+    ports:
+      - "8080:8080"                # el sitio queda en http://localhost:8080/
+    environment:
+      APP_VERSION: "1.0.0"
+      DB_HOST: db                  # 'db' = nombre del servicio = hostname interno
+      DB_PORT: "5432"
+      DB_NAME: academia
+      DB_USER: academia
+      DB_PASSWORD: academia
+    depends_on:
+      db:
+        condition: service_healthy # espera a que Postgres este SANO
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: academia
+      POSTGRES_USER: academia
+      POSTGRES_PASSWORD: academia
+    ports:
+      - "5432:5432"                # expuesto solo para inspeccionar desde el host
+    volumes:
+      - db_data:/var/lib/postgresql/data   # datos persistentes entre reinicios
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U academia -d academia"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db_data:
