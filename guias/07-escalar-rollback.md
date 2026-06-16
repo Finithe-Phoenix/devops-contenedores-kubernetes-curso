@@ -20,6 +20,10 @@ nueva versión con un **rolling update** (sin downtime) y, si algo sale mal, hac
 - ✅ El **namespace `academia`** y el deployment `academia-app` desplegados (Labs 5 y 6).
 - ✅ La imagen `academia-devops-app:1.0.0` cargada en el clúster.
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 Confirma el punto de partida:
 
 ```bash
@@ -89,6 +93,9 @@ bash scripts/build-image.sh 1.0.1
 # Cargarla al clúster kind (el clúster NO ve tu Docker local)
 kind load docker-image academia-devops-app:1.0.1 --name devops-course
 ```
+
+> 🪟 **Windows (PowerShell):** la línea con `bash` es `pwsh scripts/build-image.ps1 1.0.1`. El `kind load`
+> se escribe igual.
 
 **Lo que verás:**
 
@@ -206,6 +213,8 @@ Si marcaste las 4 casillas: 📈 **¡Medalla Operador en Vivo desbloqueada! +110
 | `rollout history` muestra solo REVISION 1 | El `set image` no cambió nada (misma imagen) | Verifica que pusiste `:1.0.1`, no `:1.0.0` |
 | `no rollout history found` | El deployment se recreó desde cero | Vuelve a hacer un `set image` para generar la revisión 2 |
 | Tras el rollback siguen pods viejos | El rollback aún no termina | Espera a `successfully rolled out` con `rollout status` |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh scripts/build-image.ps1 1.0.1` — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador — ver [chuleta](windows-powershell.md) |
 
 ## 🏆 Reto extra (+15 XP)
 

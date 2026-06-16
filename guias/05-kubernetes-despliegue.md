@@ -15,6 +15,10 @@ Necesitas:
 - La imagen del curso construida (`bash scripts/build-image.sh 1.0.0`).
 - Una terminal en la **raíz del repo** (`devops-contenedores-kubernetes-curso/`).
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 > 📦 **¿No usas kind?** Si prefieres **minikube**, sigue igual los pasos: solo cambia la creación del
 > clúster y la **carga de la imagen** (lo verás señalado con un recuadro en el Paso 3).
 
@@ -37,6 +41,8 @@ Levantamos un clúster de Kubernetes dentro de Docker con el script del repo.
 # Desde la raíz del repo
 bash scripts/create-kind-cluster.sh devops-course
 ```
+
+> 🪟 **Windows (PowerShell):** `pwsh scripts/create-kind-cluster.ps1 devops-course`
 
 **Lo que verás:**
 
@@ -146,6 +152,8 @@ academia-app-7c8f6d9b4-fghij    1/1     Running   0          2m
 
 > 💡 **Atajo:** todos los pasos 3–5 los hace de una sola vez el script `bash scripts/deploy-k8s.sh devops-course`
 > (carga la imagen, aplica los 5 manifiestos y espera el rollout). Aquí lo hicimos a mano para *ver* el error.
+>
+> 🪟 **Windows (PowerShell):** `pwsh scripts/deploy-k8s.ps1 devops-course`
 
 ### Paso 6 — Confirmar el rollout
 
@@ -182,6 +190,8 @@ Deja **esa terminal abierta** y, en **otra terminal**, prueba el endpoint de sal
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (con `.exe`; en PowerShell `curl` es otro comando)
+
 **Lo que verás:**
 
 ```json
@@ -212,6 +222,8 @@ Lo lograste si:
 | `curl` no conecta | El `port-forward` no está corriendo | Mantén abierta la terminal del `port-forward` |
 | Service no responde | El selector no coincide con las labels | Las labels del Pod deben igualar el `selector` del Service |
 | `connection refused` al crear clúster | Docker no está corriendo | Arranca Docker Desktop y reintenta |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh ...ps1` en su lugar — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
 ## 🏆 Reto extra
 
@@ -230,6 +242,7 @@ Lo lograste si:
    bash scripts/reset-lab.sh
    bash scripts/delete-kind-cluster.sh devops-course
    ```
+   > 🪟 **Windows (PowerShell):** `pwsh scripts/reset-lab.ps1` y `pwsh scripts/delete-kind-cluster.ps1 devops-course`
 
 ## 🎓 Cómo enseñarlo a tus alumnos
 

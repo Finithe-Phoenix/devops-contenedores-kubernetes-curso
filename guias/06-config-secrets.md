@@ -21,6 +21,10 @@ dentro de la imagen, los vas a guardar en un **ConfigMap** (datos no sensibles) 
 - ✅ El **namespace `academia`** creado y el deployment `academia-app` desplegado.
 - ✅ `kubectl` apuntando al clúster correcto.
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 Comprueba rápido que todo sigue en pie:
 
 ```bash
@@ -169,6 +173,8 @@ kubectl -n academia port-forward service/academia-app-service 8080:80
 curl http://localhost:8080/version
 ```
 
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/version` (con `.exe`; en PowerShell `curl` es otro comando)
+
 **Lo que verás:**
 
 ```
@@ -199,6 +205,8 @@ Si marcaste las 4 casillas: 🔐 **¡Medalla Custodio de Secretos desbloqueada! 
 | `base64: invalid input` | Copiaste el valor con espacios o saltos de línea | Copia exactamente `YWNhZGVtaWE=` sin espacios |
 | `/version` no responde | El port-forward se cerró o el Pod no está `Running` | Revisa `kubectl -n academia get pods` y reabre el port-forward |
 | Los pods siguen con la versión vieja | El deployment no se reaplicó | `kubectl apply -f 05-kubernetes/deployment.yaml` y espera el rollout |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh ...ps1` en su lugar — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
 ## 🏆 Reto extra (+10 XP)
 

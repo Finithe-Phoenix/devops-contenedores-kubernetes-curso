@@ -20,6 +20,10 @@ to the previous version with a single command.
 - ✅ The **`academia` namespace** and the `academia-app` deployment deployed (Labs 5 and 6).
 - ✅ The image `academia-devops-app:1.0.0` loaded into the cluster.
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 Confirm the starting point:
 
 ```bash
@@ -88,6 +92,9 @@ bash scripts/build-image.sh 1.0.1
 # Load it into the kind cluster (the cluster does NOT see your local Docker)
 kind load docker-image academia-devops-app:1.0.1 --name devops-course
 ```
+
+> 🪟 **Windows (PowerShell):** the `bash` line is `pwsh scripts/build-image.ps1 1.0.1`. The `kind load`
+> is typed the same.
 
 **What you'll see:**
 
@@ -205,6 +212,8 @@ If you ticked all 4 boxes: 📈 **Live Operator badge unlocked! +110 XP**
 | `rollout history` shows only REVISION 1 | `set image` changed nothing (same image) | Make sure you used `:1.0.1`, not `:1.0.0` |
 | `no rollout history found` | The deployment was recreated from scratch | Run `set image` again to generate revision 2 |
 | Old pods remain after rollback | The rollback isn't finished yet | Wait for `successfully rolled out` via `rollout status` |
+| 🪟 *"Windows Subsystem for Linux has no distributions installed"* | You ran `bash` on Windows (points to WSL) | Use `pwsh scripts/build-image.ps1 1.0.1` — see [cheat sheet](windows-powershell.en.md) |
+| 🪟 `curl` shows a weird/long response | In PowerShell `curl` = `Invoke-WebRequest` | Use `curl.exe` (with `.exe`) or open the URL in the browser — see [cheat sheet](windows-powershell.en.md) |
 
 ## 🏆 Extra challenge (+15 XP)
 

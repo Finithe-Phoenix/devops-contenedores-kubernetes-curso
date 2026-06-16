@@ -11,6 +11,10 @@
 - Haber completado el [Lab 0](00-ambiente.md): tu medalla 🧰 *Kit Listo* desbloqueada y el daemon de Docker corriendo.
 - Terminal abierta en la raíz del repositorio.
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows justo debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 **Dónde encaja en el ciclo DevOps**
 
 Este es el paso **Build → Package**. Tomamos código que corre "en tu máquina" y lo empaquetamos en una **imagen**: un artefacto inmutable y portable que correrá idéntico en tu laptop, en CI y en Kubernetes. Es el cimiento sobre el que se apoyan todos los Labs siguientes.
@@ -64,6 +68,9 @@ npm test
 bash ../../scripts/build-image.sh 1.0.0
 ```
 
+> 🪟 **Windows (PowerShell):** `pwsh ../../scripts/build-image.ps1 1.0.0`
+> · o sin script, desde `01-app/node`: `docker build -t academia-devops-app:1.0.0 .`
+
 **Lo que verás:**
 
 ```
@@ -111,6 +118,9 @@ docker run -d -p 8080:8080 --name academia academia-devops-app:1.0.0
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (con `.exe`; en PowerShell `curl`
+> es otro comando). O abre **http://localhost:8080/health** en el navegador.
+
 **Lo que verás:**
 
 ```
@@ -124,6 +134,8 @@ curl http://localhost:8080/health
 ```bash
 curl http://localhost:8080/version
 ```
+
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/version`
 
 **Lo que verás:**
 
@@ -177,8 +189,10 @@ Has completado el Lab 1 cuando:
 | El contenedor arranca y muere | Error en el código o variable faltante | Revisa `docker logs academia` |
 | `(health: starting)` y no pasa a `(healthy)` | Aún en el `start-period` de 5s | Espera unos segundos y repite `docker ps` |
 | `curl: connection refused` | El contenedor aún arranca, o el puerto no se mapeó | Confirma `docker ps` y el `-p 8080:8080` |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh ...ps1` o `docker build` directo — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
-¿Sigue fallando? → [`02-docker/comandos-docker.md`](../02-docker/comandos-docker.md)
+¿Sigue fallando? → [`02-docker/comandos-docker.md`](../02-docker/comandos-docker.md) · 🪟 [chuleta de PowerShell](windows-powershell.md)
 
 ## 🏆 Reto extra (+20 XP): compara con la imagen insegura
 
@@ -189,6 +203,8 @@ Construye la versión "mala" y mide la diferencia de tamaño:
 docker build -f ../../02-docker/Dockerfile.insecure -t academia-app:inseguro .
 docker images | grep academia
 ```
+
+> 🪟 **Windows (PowerShell):** la última línea es `docker images | Select-String academia`
 
 **Pregunta para clase:** ¿por qué pesa tanto más la imagen insegura? (Pista: imagen base completa vs `alpine`, herramientas de build que sobran, y dependencias de desarrollo incluidas.)
 

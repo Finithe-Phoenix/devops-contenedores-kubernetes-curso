@@ -24,6 +24,10 @@ propios alumnos**.
 - ✅ Abrir la [plantilla de entrega](../09-proyecto-final/plantilla-entrega.md) y la
   [rúbrica](../09-proyecto-final/rubrica.md) **antes** de empezar la demo.
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 Comprueba que tienes una base desplegada para demostrar:
 
 ```bash
@@ -85,6 +89,9 @@ docker build -t academia-devops-app:1.0.0 ./01-app/node
 docker images | grep academia-devops-app
 ```
 
+> 🪟 **Windows (PowerShell):** la última línea es `docker images | Select-String academia-devops-app`.
+> El `docker build` corre igual.
+
 **Lo que verás:**
 
 ```
@@ -140,6 +147,9 @@ kubectl -n academia port-forward svc/academia-app-service 8080:80
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** la última línea es `curl.exe http://localhost:8080/health` (con `.exe`;
+> en PowerShell `curl` es otro comando). El `port-forward` corre igual.
+
 **Lo que verás:**
 
 ```
@@ -194,6 +204,10 @@ es una buena señal. La seguridad es parte del ciclo, no un paso final opcional.
 kubectl -n academia logs --tail=5 deployment/academia-app
 curl http://localhost:8080/metrics | head -n 5
 ```
+
+> 🪟 **Windows (PowerShell):** la línea con `curl` es
+> `curl.exe http://localhost:8080/metrics | Select-Object -First 5` (con `.exe`; en PowerShell `curl` es
+> otro comando). El `kubectl logs` corre igual.
 
 **Lo que verás:**
 
@@ -280,6 +294,8 @@ Si marcaste todo: 🏛️ **¡Medalla Arquitect@ DevOps desbloqueada! +200 XP**
 | Compose marca `unhealthy` | La DB tarda en arrancar | Espera unos segundos y repite `docker compose ps`; revisa `DB_PASSWORD` |
 | `port 8080 ocupado` | Otro proceso usa el puerto | Usa otro: `port-forward svc/academia-app-service 8081:80` |
 | El pipeline está en rojo | Falló build o test | Abre el run, lee el log del paso fallido y corrígelo antes de demostrar |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh` — ver [chuleta de PowerShell](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
 ## 🏆 Reto extra (+20 XP)
 

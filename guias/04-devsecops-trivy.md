@@ -13,6 +13,7 @@ Necesitas tener listo lo siguiente:
   ```bash
   bash scripts/build-image.sh 1.0.0
   ```
+  > 🪟 **Windows (PowerShell):** `pwsh scripts/build-image.ps1 1.0.0`
 - **Trivy** instalado (el escáner de seguridad de Aqua Security):
   ```bash
   # macOS
@@ -25,6 +26,10 @@ Necesitas tener listo lo siguiente:
 
 > 💡 La **primera** vez que escanees, Trivy descarga su base de datos de vulnerabilidades (unos segundos).
 > Es normal ver una línea tipo `Need to update DB` o `Downloading DB...`.
+
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
 
 ## 🧭 Qué vas a lograr
 
@@ -152,6 +157,8 @@ Marcaste el lab si puedes responder **sin volver a mirar**:
 | Se queda en `Downloading DB...` | Primera ejecución / red lenta | Espera; descarga la base de CVEs una sola vez |
 | `Total: 0` en todo | Escaneaste otra imagen o un tag distinto | Confirma el nombre exacto `academia-devops-app:1.0.0` |
 | Tarda mucho | Imagen grande o caché vacía | Normal la primera vez; la segunda corre en caché |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh scripts/build-image.ps1 1.0.0` — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
 ## 🏆 Reto extra
 

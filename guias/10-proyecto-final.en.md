@@ -24,6 +24,10 @@ security and monitoring. And — the thing that makes this course unique — you
 - ✅ Open the [submission template](../09-proyecto-final/plantilla-entrega.en.md) and the
   [rubric](../09-proyecto-final/rubrica.en.md) **before** starting the demo.
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 Check you have a deployed base to demonstrate:
 
 ```bash
@@ -85,6 +89,9 @@ docker build -t academia-devops-app:1.0.0 ./01-app/node
 docker images | grep academia-devops-app
 ```
 
+> 🪟 **Windows (PowerShell):** the last line is `docker images | Select-String academia-devops-app`.
+> The `docker build` runs the same.
+
 **What you'll see:**
 
 ```
@@ -140,6 +147,9 @@ kubectl -n academia port-forward svc/academia-app-service 8080:80
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** the last line is `curl.exe http://localhost:8080/health` (with `.exe`;
+> in PowerShell `curl` is a different command). The `port-forward` runs the same.
+
 **What you'll see:**
 
 ```
@@ -194,6 +204,10 @@ a good sign. Security is part of the cycle, not an optional final step.
 kubectl -n academia logs --tail=5 deployment/academia-app
 curl http://localhost:8080/metrics | head -n 5
 ```
+
+> 🪟 **Windows (PowerShell):** the `curl` line is
+> `curl.exe http://localhost:8080/metrics | Select-Object -First 5` (with `.exe`; in PowerShell `curl` is
+> a different command). The `kubectl logs` runs the same.
 
 **What you'll see:**
 
@@ -279,6 +293,8 @@ If you ticked everything: 🏛️ **DevOps Architect badge unlocked! +200 XP**
 | Compose shows `unhealthy` | The DB takes time to start | Wait a few seconds and rerun `docker compose ps`; check `DB_PASSWORD` |
 | `port 8080 in use` | Another process uses the port | Use another one: `port-forward svc/academia-app-service 8081:80` |
 | The pipeline is red | Build or test failed | Open the run, read the failing step's log and fix it before demoing |
+| 🪟 *"Windows Subsystem for Linux has no distributions installed"* | You ran `bash` on Windows (it points to WSL) | Use `pwsh` — see [PowerShell cheat sheet](windows-powershell.en.md) |
+| 🪟 `curl` shows a weird/long response | In PowerShell `curl` = `Invoke-WebRequest` | Use `curl.exe` (with `.exe`) or open the URL in the browser |
 
 ## 🏆 Extra challenge (+20 XP)
 

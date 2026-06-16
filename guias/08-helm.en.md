@@ -21,6 +21,10 @@ with one command, and whose values you can change **without touching the templat
 - ✅ **Helm v3 installed** (`helm version` must return `v3.x`). You validated it in Lab 0.
 - ✅ A terminal open at the **repo root** (commands use paths like `./06-helm/...`).
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 Quick check that Helm responds and the cluster is alive:
 
 ```bash
@@ -197,6 +201,9 @@ kubectl -n academia port-forward svc/academia-app-service 8080:80
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** the last line is `curl.exe http://localhost:8080/health` (with `.exe`; in
+> PowerShell `curl` is a different command). The `port-forward` is typed the same.
+
 **What you'll see:**
 
 ```
@@ -301,6 +308,8 @@ If you ticked all 5 boxes: 🎁 **Helm Packager badge unlocked! +100 XP**
 | Pods in `Pending` for a long time | Not enough RAM/CPU in the cluster | Close apps or give Docker Desktop more resources |
 | `Error: query: failed to query with labels` | You're pointing at another cluster/context | `kubectl config use-context kind-devops-course` |
 | `port 8080 in use` during port-forward | Another process uses the port | Use another one: `port-forward svc/academia-app-service 8081:80` |
+| 🪟 *"Windows Subsystem for Linux has no distributions installed"* | You ran `bash` on Windows (points to WSL) | Use `pwsh ...ps1` or the `helm`/`kubectl` command directly — see [cheat sheet](windows-powershell.en.md) |
+| 🪟 `curl` shows a weird/long response | In PowerShell `curl` = `Invoke-WebRequest` | Use `curl.exe` (with `.exe`) or open the URL in the browser — see [cheat sheet](windows-powershell.en.md) |
 
 ## 🏆 Extra challenge (+15 XP)
 

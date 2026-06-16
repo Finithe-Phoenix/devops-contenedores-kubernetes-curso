@@ -4,6 +4,8 @@
 
 > **Mission:** containerize the DevOps Academy App. **Reward:** +100 XP and the 🐳 *Container Captain* badge.
 
+> 🪟 **On Windows (PowerShell):** some Unix commands change (`curl`→`curl.exe`, `grep`→`Select-String`, `head`→`Select-Object -First`). See the **[PowerShell cheat sheet](../guias/windows-powershell.en.md)**.
+
 ## Before you start
 
 ```bash
@@ -30,6 +32,8 @@ curl http://localhost:8080/health
 docker logs academia
 docker logs -f academia # follow the logs live (Ctrl+C to exit)
 ```
+
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (with `.exe`; in PowerShell `curl` is a different command). Or open the URL in your browser.
 
 ## Inspect and step inside
 
@@ -64,6 +68,9 @@ docker system prune                # ⚠️ removes unused containers/images
 docker build -f ../02-docker/Dockerfile.insecure -t academia-app:inseguro ../01-app/node
 docker images | grep academia
 ```
+
+> 🪟 **Windows (PowerShell):** the last line is `docker images | Select-String academia`
+
 Question for class: **why is the insecure image so much heavier?**
 
 ## ❗ Common errors (and how to rescue yourself)

@@ -21,6 +21,10 @@ there's a **Plan B** that teaches the same thing with fewer resources.
 - ✅ `kubectl` pointing at the right cluster (`kubectl config current-context` → `kind-devops-course`).
 - ✅ (Optional, for the heavy stack) **Helm v3** and at least **~4 GB of free RAM** in Docker Desktop.
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 Check the app is up before observing it:
 
 ```bash
@@ -162,6 +166,9 @@ kubectl -n academia port-forward svc/academia-app-service 8080:80
 curl http://localhost:8080/metrics
 ```
 
+> 🪟 **Windows (PowerShell):** the last line is `curl.exe http://localhost:8080/metrics` (with `.exe`;
+> in PowerShell `curl` is a different command). The `port-forward` runs the same.
+
 **What you'll see:** (excerpt — plain text, one metric per line)
 
 ```
@@ -222,6 +229,9 @@ curl http://localhost:8080/metrics
 kubectl -n academia top pods
 ```
 
+> 🪟 **Windows (PowerShell):** the first line is `curl.exe http://localhost:8080/metrics` (with `.exe`;
+> in PowerShell `curl` is a different command). The `kubectl top` runs the same.
+
 **What you'll see:**
 
 ```
@@ -258,6 +268,8 @@ If you ticked the above: 🔭 **Observer badge unlocked! +90 XP**
 | Grafana won't load the dashboard | The stack is still starting | Wait: `kube-prometheus-stack` takes several minutes |
 | `/metrics` doesn't respond | The port-forward closed or the Pod isn't `Running` | Check `kubectl -n academia get pods` and reopen the tunnel |
 | `No resources found` in `get events` | Wrong namespace | Add `-n academia` to the command |
+| 🪟 *"Windows Subsystem for Linux has no distributions installed"* | You ran `bash` on Windows (it points to WSL) | Use `pwsh` — see [PowerShell cheat sheet](windows-powershell.en.md) |
+| 🪟 `curl` shows a weird/long response | In PowerShell `curl` = `Invoke-WebRequest` | Use `curl.exe` (with `.exe`) or open the URL in the browser |
 
 ## 🏆 Extra challenge (+15 XP)
 
@@ -272,6 +284,9 @@ kubectl -n academia describe pod <pod> | grep -A3 "Last State"
 # Revert when you're done:
 kubectl -n academia set resources deployment/academia-app --limits=memory=128Mi
 ```
+
+> 🪟 **Windows (PowerShell):** the `grep` line is
+> `kubectl -n academia describe pod <pod> | Select-String -Context 0,3 "Last State"`. The rest runs the same.
 
 Ask yourself: with the logs, the events and `describe`, **can you explain why it restarted
 without guessing?**

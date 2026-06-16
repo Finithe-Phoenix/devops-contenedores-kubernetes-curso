@@ -12,6 +12,10 @@
 - **Docker Desktop instalado y abierto** (busca la ballenita 🐳 corriendo en tu barra de tareas).
 - Git, Node.js (v20 o superior) y npm instalados. ¿No los tienes? → [`00-prework/instalacion.md`](../00-prework/instalacion.md).
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 **Dónde encaja en el ciclo DevOps**
 
 Antes de *codear*, *construir*, *probar* o *desplegar* nada, todo el equipo necesita el **mismo ambiente reproducible**. Este Lab es el "Plan → Setup": eliminamos el clásico *"en mi máquina sí funciona"* dejando todas las herramientas validadas de una vez.
@@ -43,6 +47,8 @@ cd devops-contenedores-kubernetes-curso
 ```bash
 bash scripts/check-env.sh
 ```
+
+> 🪟 **Windows (PowerShell):** `pwsh scripts/check-env.ps1`
 
 **Lo que verás:**
 
@@ -129,6 +135,8 @@ Has completado el Lab 0 cuando:
 | `❌ node` o versión menor a v20 | Node antiguo o ausente | Instala Node 20+ desde [nodejs.org](https://nodejs.org) |
 | `scripts/check-env.sh: not found` | Estás en otra carpeta | `cd` a la raíz del repo (Paso 1) |
 | `Permission denied` al correr el script | Falta permiso de ejecución | Anteponlo con `bash`: `bash scripts/check-env.sh` |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh scripts/check-env.ps1` — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` (con `.exe`) o abre la URL en el navegador |
 
 ¿Sigue fallando? → [`00-prework/troubleshooting.md`](../00-prework/troubleshooting.md)
 

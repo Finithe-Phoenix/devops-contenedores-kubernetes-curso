@@ -11,6 +11,10 @@
 - Have completed **Lab 2**: you already understand that the image gets built and the app gets tested.
 - You don't need to install anything else: the pipeline runs on **GitHub's machines** (runners), not your PC.
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 > 💡 Key idea: every time you `git push`, a **clean machine** repeats exactly the same steps (install → test → build → scan). If something fails, the commit is marked **red**. That's **Continuous Integration (CI)**.
 
 ## 🧭 What you'll achieve

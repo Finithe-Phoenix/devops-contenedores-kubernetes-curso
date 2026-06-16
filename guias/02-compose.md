@@ -11,6 +11,10 @@
 - Una terminal abierta. Vamos a trabajar **dentro de la carpeta `03-compose/`**.
 - `curl` disponible (viene con Windows 10/11, macOS y Linux).
 
+> 🪟 **¿Estás en Windows?** Los comandos de abajo son estilo Linux/Mac. En **PowerShell** algunos cambian
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). Verás la versión Windows debajo de cada
+> comando que cambia. Si te atoras, ten a mano la **[chuleta de PowerShell](windows-powershell.md)**.
+
 > 💡 Idea clave del lab: **la misma imagen del Lab 1 no cambia**. Solo le pasamos variables de entorno (`DB_HOST`, etc.) y, gracias a eso, ahora habla con PostgreSQL. Eso es configuración por entorno (12-factor).
 
 ## 🧭 Qué vas a lograr
@@ -75,6 +79,9 @@ academia-devops-db-1      postgres:16-alpine          Up (healthy)
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (con `.exe`; en PowerShell `curl`
+> es otro comando). O abre **http://localhost:8080/health** en el navegador.
+
 **Lo que verás:**
 
 ```json
@@ -88,6 +95,8 @@ curl http://localhost:8080/health
 ```bash
 curl http://localhost:8080/courses
 ```
+
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/courses`
 
 **Lo que verás:**
 
@@ -106,6 +115,9 @@ curl -X POST http://localhost:8080/courses \
   -H "Content-Type: application/json" \
   -d '{"code":"PERSIST-1","name":"Sobrevive al reinicio"}'
 ```
+
+> 🪟 **Windows (PowerShell):** en una sola línea (la barra `\` no continúa líneas en PowerShell):
+> `curl.exe -X POST http://localhost:8080/courses -H "Content-Type: application/json" -d '{"code":"PERSIST-1","name":"Sobrevive al reinicio"}'`
 
 **Lo que verás:**
 
@@ -135,6 +147,8 @@ docker compose restart app
 ```bash
 curl http://localhost:8080/courses
 ```
+
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/courses`
 
 **Lo que verás:**
 
@@ -178,6 +192,8 @@ Has completado el lab si:
 | `store` sigue diciendo `memory` | La app no recibió `DB_HOST` | Verifica las `environment:` del servicio `app`; reconstruye con `up -d --build` |
 | Datos "viejos" que no esperabas | El volumen persistió de una corrida anterior | `docker compose down -v` para empezar limpio |
 | `app` no resuelve `db` | Error de tipeo en `DB_HOST` | Debe ser **exactamente** el nombre del servicio (`db`) |
+| 🪟 *"Subsistema de Windows para Linux no tiene distribuciones instaladas"* | Usaste `bash` en Windows (apunta a WSL) | Usa `pwsh ...ps1` o el comando `docker`/`kubectl` directo — ver [chuleta](windows-powershell.md) |
+| 🪟 `curl` muestra una respuesta rara/larga | En PowerShell `curl` = `Invoke-WebRequest` | Usa `curl.exe` o abre la URL en el navegador |
 
 > Cuando termines y quieras limpiar: `docker compose down` (conserva el volumen) o `docker compose down -v` (borra también los datos).
 

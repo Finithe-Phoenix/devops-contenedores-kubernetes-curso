@@ -15,6 +15,10 @@ You need:
 - The course image built (`bash scripts/build-image.sh 1.0.0`).
 - A terminal at the **repo root** (`devops-contenedores-kubernetes-curso/`).
 
+> 🪟 **On Windows?** The commands below are Linux/Mac style. In **PowerShell** some change
+> (`bash`→`pwsh`, `curl`→`curl.exe`, `grep`→`Select-String`). You'll see the Windows version right below
+> each command that changes. If you get stuck, keep the **[PowerShell cheat sheet](windows-powershell.en.md)** handy.
+
 > 📦 **Not using kind?** If you prefer **minikube**, the steps are the same: just swap the cluster
 > creation and the **image load** (flagged in a callout box in Step 3).
 
@@ -37,6 +41,8 @@ We spin up a Kubernetes cluster inside Docker using the repo's script.
 # From the repo root
 bash scripts/create-kind-cluster.sh devops-course
 ```
+
+> 🪟 **Windows (PowerShell):** `pwsh scripts/create-kind-cluster.ps1 devops-course`
 
 **What you'll see:**
 
@@ -146,6 +152,8 @@ academia-app-7c8f6d9b4-fghij    1/1     Running   0          2m
 
 > 💡 **Shortcut:** the script `bash scripts/deploy-k8s.sh devops-course` does all of steps 3–5 in one shot
 > (loads the image, applies the 5 manifests, waits for the rollout). We did it by hand here to *see* the error.
+>
+> 🪟 **Windows (PowerShell):** `pwsh scripts/deploy-k8s.ps1 devops-course`
 
 ### Step 6 — Confirm the rollout
 
@@ -182,6 +190,8 @@ Leave **that terminal open** and, in **another terminal**, hit the health endpoi
 curl http://localhost:8080/health
 ```
 
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (with `.exe`; in PowerShell `curl` is a different command)
+
 **What you'll see:**
 
 ```json
@@ -212,6 +222,8 @@ You did it if:
 | `curl` won't connect | The `port-forward` isn't running | Keep the `port-forward` terminal open |
 | Service doesn't respond | Selector doesn't match the labels | The Pod labels must equal the Service `selector` |
 | `connection refused` when creating the cluster | Docker isn't running | Start Docker Desktop and retry |
+| 🪟 *"Windows Subsystem for Linux has no installed distributions"* | You used `bash` on Windows (points to WSL) | Use `pwsh ...ps1` instead — see the [cheat sheet](windows-powershell.en.md) |
+| 🪟 `curl` shows a weird/long response | In PowerShell `curl` = `Invoke-WebRequest` | Use `curl.exe` (with `.exe`) or open the URL in the browser |
 
 ## 🏆 Extra challenge
 
@@ -230,6 +242,7 @@ You did it if:
    bash scripts/reset-lab.sh
    bash scripts/delete-kind-cluster.sh devops-course
    ```
+   > 🪟 **Windows (PowerShell):** `pwsh scripts/reset-lab.ps1` and `pwsh scripts/delete-kind-cluster.ps1 devops-course`
 
 ## 🎓 How to teach it to your students
 

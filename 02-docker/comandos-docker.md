@@ -4,6 +4,8 @@
 
 > **Misión:** contenerizar la Academia DevOps App. **Recompensa:** +100 XP y la medalla 🐳 *Capitán de Contenedores*.
 
+> 🪟 **En Windows (PowerShell):** algunos comandos Unix cambian (`curl`→`curl.exe`, `grep`→`Select-String`, `head`→`Select-Object -First`). Ver la **[chuleta de PowerShell](../guias/windows-powershell.md)**.
+
 ## Antes de empezar
 
 ```bash
@@ -30,6 +32,8 @@ curl http://localhost:8080/health
 docker logs academia
 docker logs -f academia # seguir los logs en vivo (Ctrl+C para salir)
 ```
+
+> 🪟 **Windows (PowerShell):** `curl.exe http://localhost:8080/health` (con `.exe`; en PowerShell `curl` es otro comando). O abre la URL en el navegador.
 
 ## Inspeccionar y entrar
 
@@ -64,6 +68,9 @@ docker system prune                # ⚠️ borra contenedores/imágenes sin usa
 docker build -f ../02-docker/Dockerfile.insecure -t academia-app:inseguro ../01-app/node
 docker images | grep academia
 ```
+
+> 🪟 **Windows (PowerShell):** la última línea es `docker images | Select-String academia`
+
 Pregunta para clase: **¿por qué pesa tanto más la imagen insegura?**
 
 ## ❗ Errores comunes (y cómo rescatarte)
