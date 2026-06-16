@@ -27,6 +27,11 @@ A **detailed guide per lab**: prerequisites, exact commands, *"what you'll see"*
 **Total: 1,180 XP** across 11 missions. Track your progress in the
 [command center](../01-app/node/README.en.md) (the web app) or on the [achievement card](../gamificacion/tarjeta-logros.en.md).
 
+## 🪟🐧 On Windows?
+
+- **[PowerShell cheat sheet](windows-powershell.en.md)** — translation of the Unix commands (`curl`→`curl.exe`, etc.).
+- **[Real Linux terminal with WSL2](terminal-linux-wsl.en.md)** — Ubuntu or Arch; run the guide commands **as-is**, no translation.
+
 ## 🧑‍🏫 How to use them
 
 - **As an instructor:** project them and go step by step; each one includes *"what to demo"* and *"how to rescue"*.

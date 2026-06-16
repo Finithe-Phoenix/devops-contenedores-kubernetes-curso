@@ -8,6 +8,9 @@ Esta es tu tabla de traducción. Tenla a un lado mientras haces los labs.
 > 💡 **Regla rápida:** lo que pongas con `docker`, `kubectl`, `helm`, `git`, `node`, `npm` funciona **igual**
 > en Windows. Lo que cambia son las *herramientas de Unix* (`bash`, `curl`, `grep`, `head`, `tail`).
 
+> 🐧 **¿Prefieres no traducir nada?** Instala **[una terminal Linux real con WSL2](terminal-linux-wsl.md)**
+> (Ubuntu o Arch) y copia-pega los comandos de las guías **idénticos**, sin esta tabla.
+
 ## 🔁 Tabla de traducción
 
 | 🐧 Linux / Mac / WSL (lo que ves en la guía) | 🪟 Windows (PowerShell) |

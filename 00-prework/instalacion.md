@@ -27,6 +27,9 @@ Al terminar: **reinicia la PC**, abre **Docker Desktop** (espera la ballena 🐳
 > no tiene distribuciones instaladas"* si no hay distro. Más detalle: [`scripts/README.md`](../scripts/README.md).
 > O simplemente usa `docker` directo: desde `01-app/node`, `docker build -t academia-devops-app:1.0.0 .`
 >
+> 🐧 **¿Quieres una terminal Linux real?** Con **[WSL2 (Ubuntu o Arch)](../guias/terminal-linux-wsl.md)**
+> corres los comandos de las guías **idénticos**, sin traducir nada.
+>
 > 🍎🐧 **macOS / Linux:** usa `brew` / el gestor de tu distro (tablas abajo) + Docker Desktop o Docker Engine.
 
 ## Lo imprescindible (días 1 y 2)

@@ -27,6 +27,11 @@ Una **guía detallada por laboratorio**: prerrequisitos, comandos exactos, *"lo 
 **Total: 1,180 XP** repartidos en 11 misiones. Marca tu avance en el
 [centro de mando](../01-app/node/README.md) (la app web) o en la [tarjeta de logros](../gamificacion/tarjeta-logros.md).
 
+## 🪟🐧 ¿Estás en Windows?
+
+- **[Chuleta de PowerShell](windows-powershell.md)** — traducción de los comandos Unix (`curl`→`curl.exe`, etc.).
+- **[Terminal Linux real con WSL2](terminal-linux-wsl.md)** — Ubuntu o Arch; corre los comandos de las guías **idénticos**, sin traducir.
+
 ## 🧑‍🏫 Cómo usarlas
 
 - **Como instructor:** proyéctalas y avanza paso a paso; cada una trae *"qué demostrar"* y *"cómo rescatar"*.

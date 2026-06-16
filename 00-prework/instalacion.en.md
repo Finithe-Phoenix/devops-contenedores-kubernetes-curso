@@ -27,6 +27,9 @@ When it finishes: **reboot**, open **Docker Desktop** (wait for the 🐳 whale) 
 > no distributions installed"* if there's no distro. More detail: [`scripts/README.en.md`](../scripts/README.en.md).
 > Or just use `docker` directly: from `01-app/node`, `docker build -t academia-devops-app:1.0.0 .`
 >
+> 🐧 **Want a real Linux terminal?** With **[WSL2 (Ubuntu or Arch)](../guias/terminal-linux-wsl.en.md)**
+> you run the guide commands **as-is**, no translation needed.
+>
 > 🍎🐧 **macOS / Linux:** use `brew` / your distro's package manager (tables below) + Docker Desktop or Docker Engine.
 
 ## The essentials (days 1 and 2)
