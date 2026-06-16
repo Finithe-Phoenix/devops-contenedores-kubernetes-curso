@@ -2,7 +2,7 @@
 // Cada slide es una infografía independiente, lista para compartir/imprimir.
 // Ejecuta:  node infographics.js
 const lib = require("./lib");
-const { C, F, M, bg, card, table, steps, bullets, codePanel, callout, newDeck } = lib;
+const { C, F, M, SH, SHsm, bg, card, table, steps, bullets, codePanel, callout, newDeck } = lib;
 
 let LANG = "es";
 const tr = (es, en) => (LANG === "es" ? es : en);
@@ -10,24 +10,33 @@ const tr = (es, en) => (LANG === "es" ? es : en);
 function info(p) { const s = p.addSlide(); bg(s); return s; }
 
 function infoTitle(s, title, subtitle, accent = C.cyan) {
-  s.addShape("roundRect", { x: M, y: 0.38, w: 0.52, h: 0.52, rectRadius: 0.08, fill: { color: accent } });
-  s.addText(title, { x: 1.27, y: 0.34, w: 8.2, h: 0.55, fontFace: F.head, bold: true, fontSize: 25, color: C.white, margin: 0 });
-  s.addText(subtitle, { x: 1.27, y: 0.92, w: 8.2, h: 0.3, fontFace: F.mono, fontSize: 11, color: accent, margin: 0 });
+  // Cuadros decorativos de acento (esquina superior derecha).
+  s.addShape("roundRect", { x: 8.62, y: 0.42, w: 0.34, h: 0.34, rectRadius: 0.06, fill: { color: accent }, shadow: { ...SHsm } });
+  s.addShape("roundRect", { x: 9.0, y: 0.42, w: 0.34, h: 0.34, rectRadius: 0.06, fill: { color: C.rose, transparency: 30 } });
+  s.addShape("roundRect", { x: 8.62, y: 0.8, w: 0.34, h: 0.34, rectRadius: 0.06, fill: { color: C.green, transparency: 30 } });
+  // Marca de título.
+  s.addShape("roundRect", { x: M, y: 0.38, w: 0.52, h: 0.52, rectRadius: 0.08, fill: { color: accent }, shadow: { ...SHsm } });
+  s.addText(title, { x: 1.27, y: 0.34, w: 7.2, h: 0.55, fontFace: F.head, bold: true, fontSize: 25, color: C.white, margin: 0 });
+  s.addText(subtitle, { x: 1.27, y: 0.92, w: 7.2, h: 0.3, fontFace: F.mono, fontSize: 11, color: accent, margin: 0 });
+  // Subrayado de acento bajo el título.
+  s.addShape("rect", { x: 1.29, y: 0.86, w: 1.0, h: 0.03, fill: { color: accent } });
 }
 
 function footer(s) {
   s.addShape("rect", { x: M, y: 5.18, w: 8.8, h: 0.012, fill: { color: C.line } });
+  s.addShape("ellipse", { x: M, y: 5.28, w: 0.1, h: 0.1, fill: { color: C.cyan } });
   s.addText(tr("Curso DevOps y Contenedores · Tec de Toluca · Compártelo con tus alumnos",
     "DevOps & Containers Course · Tec de Toluca · Share it with your students"),
-    { x: M, y: 5.24, w: 8.8, h: 0.3, fontFace: F.mono, fontSize: 9, color: C.muted, margin: 0 });
+    { x: M + 0.18, y: 5.24, w: 8.6, h: 0.3, fontFace: F.mono, fontSize: 9, color: C.muted, margin: 0 });
 }
 
 function cheat(s, x, y, w, h, accent, title, lines) {
-  s.addShape("rect", { x, y, w, h, fill: { color: C.panel }, line: { color: accent, width: 1 } });
-  s.addShape("rect", { x, y, w: 0.07, h, fill: { color: accent } });
-  s.addText(title, { x: x + 0.2, y: y + 0.1, w: w - 0.3, h: 0.3, fontFace: F.head, bold: true, fontSize: 12, color: accent, margin: 0 });
+  s.addShape("roundRect", { x, y, w, h, rectRadius: 0.04, fill: { color: C.panel }, line: { color: accent, width: 1 }, shadow: { ...SH } });
+  s.addShape("rect", { x: x + 0.015, y: y + 0.06, w: 0.07, h: h - 0.12, fill: { color: accent } });
+  s.addText(title, { x: x + 0.22, y: y + 0.1, w: w - 0.32, h: 0.3, fontFace: F.head, bold: true, fontSize: 12, color: accent, margin: 0, charSpacing: 0.5 });
+  s.addShape("rect", { x: x + 0.22, y: y + 0.42, w: w - 0.42, h: 0.016, fill: { color: C.line } });
   const arr = lines.map((l) => ({ text: l, options: { breakLine: true, fontSize: 10.5, color: C.text, paraSpaceAfter: 3 } }));
-  s.addText(arr, { x: x + 0.2, y: y + 0.46, w: w - 0.32, h: h - 0.56, fontFace: F.mono, valign: "top", align: "left" });
+  s.addText(arr, { x: x + 0.22, y: y + 0.52, w: w - 0.34, h: h - 0.62, fontFace: F.mono, valign: "top", align: "left" });
 }
 
 function build(p) {
@@ -77,7 +86,7 @@ function build(p) {
     tr("EXPOSE 8080                # documenta el puerto", "EXPOSE 8080                # documents the port"),
     tr("USER node                  # no correr como root", "USER node                  # don't run as root"),
     { text: tr("CMD [\"node\",\"src/server.js\"]  # arranque", "CMD [\"node\",\"src/server.js\"]  # startup"), color: C.amber },
-  ], { y: 1.5, h: 2.5, fontSize: 13 });
+  ], { y: 1.5, h: 2.5, fontSize: 13, title: "Dockerfile" });
   bullets(s, [
     { text: tr("Regla de oro: del cambio menos frecuente al más frecuente (aprovecha la cache de capas).", "Golden rule: from least to most frequently changed (leverages layer cache)."), color: C.amber },
   ], { y: 4.2, h: 0.8, fontSize: 12 });
@@ -96,7 +105,7 @@ function build(p) {
     "  db:",
     "    image: postgres:16-alpine",
     tr("    volumes: [ db_data:/var/lib/postgresql/data ]   # persistencia", "    volumes: [ db_data:/var/lib/postgresql/data ]   # persistence"),
-  ], { x: M, y: 1.45, w: 5.5, h: 3.5, fontSize: 11.5 });
+  ], { x: M, y: 1.45, w: 5.5, h: 3.5, fontSize: 11.5, title: "docker-compose.yml" });
   cheat(s, 6.35, 1.45, 3.05, 3.5, C.green, tr("Comandos", "Commands"), ["docker compose up -d", "docker compose ps", "docker compose logs -f app", "docker compose down", tr("docker compose down -v", "docker compose down -v"), tr("  (borra el volumen)", "  (deletes the volume)")]);
   footer(s);
 
